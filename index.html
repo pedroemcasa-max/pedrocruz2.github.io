@@ -152,9 +152,10 @@ section {
   margin: 4px 0; 
 }
 
+/* MODIFICAÇÃO: Grid com proporções iguais */
 .projects {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
   gap: 30px;
   content-visibility: auto;
   contain-intrinsic-size: 400px;
@@ -168,7 +169,7 @@ section {
   }
 }
 
-/* Cards com imagens completas */
+/* MODIFICAÇÃO: Cards com proporção fixa 4:3 */
 .card {
   position: relative;
   cursor: pointer;
@@ -181,13 +182,15 @@ section {
   background-size: 200% 100%;
   box-shadow: var(--card-shadow);
   outline: none;
+  aspect-ratio: 4/3; /* Proporção fixa 4:3 */
+  height: auto; /* Remove altura fixa */
 }
 
 .card:active {
   transform: scale(0.98);
 }
 
-/* Container da imagem */
+/* MODIFICAÇÃO: Container da imagem com proporção fixa */
 .card-img-container {
   width: 100%;
   height: 100%;
@@ -195,13 +198,32 @@ section {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  position: relative;
 }
 
+/* MODIFICAÇÃO: Imagens com object-fit: cover para preencher o container */
 .card-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover; /* MUDADO de contain para cover */
   transition: transform var(--transition-speed);
+  display: block;
+}
+
+/* MODIFICAÇÃO: Overlay sutil no hover */
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: background var(--transition-speed);
+  pointer-events: none;
+}
+
+.card:hover .card-overlay {
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .card[data-loaded="true"] {
@@ -405,35 +427,17 @@ footer {
   display: none;
 }
 
-/* Classes para diferentes proporções de imagem */
-.card-size-small {
-  height: 400px;
-}
-
-.card-size-medium {
-  height: 500px;
-}
-
+/* MODIFICAÇÃO: Remover classes de tamanho diferentes */
+.card-size-small,
+.card-size-medium,
 .card-size-large {
-  height: 600px;
+  /* Todas as classes removidas - agora usamos proporção fixa */
 }
 
 @media (max-width: 768px) {
-  .card-size-small {
-    height: 300px;
-  }
-  
-  .card-size-medium {
-    height: 350px;
-  }
-  
-  .card-size-large {
-    height: 400px;
-  }
-  
-  /* Melhorar visualização em mobile */
-  .card {
-    max-height: 70vh;
+  .projects {
+    grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+    gap: 20px;
   }
   
   .lightbox {
@@ -472,6 +476,8 @@ footer {
     page-break-inside: avoid;
     border: 1px solid #ccc !important;
     box-shadow: none !important;
+    aspect-ratio: auto !important;
+    height: 300px !important;
   }
   
   .card-img {
@@ -479,7 +485,8 @@ footer {
   }
   
   .projects {
-    display: block;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
   }
   
   section {
@@ -574,6 +581,22 @@ footer {
     animation: spin 2s linear infinite;
   }
 }
+
+/* MODIFICAÇÃO: Ajustes para imagens verticais */
+.card-img.vertical {
+  object-fit: contain;
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0 auto;
+}
+
+/* MODIFICAÇÃO: Container para manter proporção uniforme */
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
 </style>
 </head>
 
@@ -608,60 +631,75 @@ footer {
 <p>Chefchaouen · 2007</p>
 </div>
 <div class="projects">
-<div class="card loading card-size-medium" 
+<div class="card loading" 
      data-src="./assets/cor/Paisagen_cheff01.jpg" 
      onclick="openLightbox('cor',0)"
      tabindex="0"
      role="button"
      aria-label="Open image: A Cidade Viva">
-  <div class="card-img-container">
-    <img class="card-img" alt="A Cidade Viva">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="A Cidade Viva">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-medium" 
+<div class="card loading" 
      data-src="./assets/cor/Paisagen_cheff02.jpg" 
      onclick="openLightbox('cor',1)"
      tabindex="0"
      role="button"
      aria-label="Open image: A Saída">
-  <div class="card-img-container">
-    <img class="card-img" alt="A Saída">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="A Saída">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-medium" 
+<div class="card loading" 
      data-src="./assets/cor/Paisagen_cheff04.jpg" 
      onclick="openLightbox('cor',2)"
      tabindex="0"
      role="button"
      aria-label="Open image: O Observador">
-  <div class="card-img-container">
-    <img class="card-img" alt="O Observador">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="O Observador">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-medium" 
+<div class="card loading" 
      data-src="./assets/cor/Paisagen_cheff06.jpg" 
      onclick="openLightbox('cor',3)"
      tabindex="0"
      role="button"
      aria-label="Open image: Ascensão">
-  <div class="card-img-container">
-    <img class="card-img" alt="Ascensão">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Ascensão">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-medium" 
+<div class="card loading" 
      data-src="./assets/cor/Paisagen_cheff07.jpg" 
      onclick="openLightbox('cor',4)"
      tabindex="0"
      role="button"
      aria-label="Open image: Silêncio">
-  <div class="card-img-container">
-    <img class="card-img" alt="Silêncio">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Silêncio">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
 </div>
 
@@ -671,60 +709,75 @@ footer {
 <p>2012</p>
 </div>
 <div class="projects">
-<div class="card loading card-size-medium" 
+<div class="card loading" 
      data-src="./assets/pb/Paisagen_pb01.jpg" 
      onclick="openLightbox('pb',0)"
      tabindex="0"
      role="button"
      aria-label="Open image: Antes">
-  <div class="card-img-container">
-    <img class="card-img" alt="Antes">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Antes">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-medium" 
+<div class="card loading" 
      data-src="./assets/pb/Paisagen_pb02.jpg" 
      onclick="openLightbox('pb',1)"
      tabindex="0"
      role="button"
      aria-label="Open image: Céu">
-  <div class="card-img-container">
-    <img class="card-img" alt="Céu">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Céu">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-medium" 
+<div class="card loading" 
      data-src="./assets/pb/Paisagen_pb03.jpg" 
      onclick="openLightbox('pb',2)"
      tabindex="0"
      role="button"
      aria-label="Open image: Passagem">
-  <div class="card-img-container">
-    <img class="card-img" alt="Passagem">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Passagem">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-medium" 
+<div class="card loading" 
      data-src="./assets/pb/Paisagen_pb05.jpg" 
      onclick="openLightbox('pb',3)"
      tabindex="0"
      role="button"
      aria-label="Open image: Entre">
-  <div class="card-img-container">
-    <img class="card-img" alt="Entre">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Entre">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-medium" 
+<div class="card loading" 
      data-src="./assets/pb/Paisagen_pb08.jpg" 
      onclick="openLightbox('pb',4)"
      tabindex="0"
      role="button"
      aria-label="Open image: Noite">
-  <div class="card-img-container">
-    <img class="card-img" alt="Noite">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Noite">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
 </div>
 
@@ -734,60 +787,75 @@ footer {
 <p>2024</p>
 </div>
 <div class="projects">
-<div class="card loading card-size-medium" 
+<div class="card loading" 
      data-src="./assets/mia/mia01.jpg" 
      onclick="openLightbox('mia',0)"
      tabindex="0"
      role="button"
      aria-label="Open image: Antes">
-  <div class="card-img-container">
-    <img class="card-img" alt="Antes">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Antes">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-medium" 
+<div class="card loading" 
      data-src="./assets/mia/mia03.jpg" 
      onclick="openLightbox('mia',1)"
      tabindex="0"
      role="button"
      aria-label="Open image: Fio">
-  <div class="card-img-container">
-    <img class="card-img" alt="Fio">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Fio">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-medium" 
+<div class="card loading" 
      data-src="./assets/mia/mia05.jpg" 
      onclick="openLightbox('mia',2)"
      tabindex="0"
      role="button"
      aria-label="Open image: Soltar">
-  <div class="card-img-container">
-    <img class="card-img" alt="Soltar">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Soltar">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-medium" 
+<div class="card loading" 
      data-src="./assets/mia/mia07.jpg" 
      onclick="openLightbox('mia',3)"
      tabindex="0"
      role="button"
      aria-label="Open image: Negociação">
-  <div class="card-img-container">
-    <img class="card-img" alt="Negociação">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Negociação">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-medium" 
+<div class="card loading" 
      data-src="./assets/mia/mia09.jpg" 
      onclick="openLightbox('mia',4)"
      tabindex="0"
      role="button"
      aria-label="Open image: Declaração">
-  <div class="card-img-container">
-    <img class="card-img" alt="Declaração">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Declaração">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
 </div>
 
@@ -797,93 +865,117 @@ footer {
 <p>2016</p>
 </div>
 <div class="projects">
-<div class="card loading card-size-large" 
+<div class="card loading" 
      data-src="./assets/cas/cas01.jpg" 
      onclick="openLightbox('cas',0)"
      tabindex="0"
      role="button"
      aria-label="Open image: Antes">
-  <div class="card-img-container">
-    <img class="card-img" alt="Antes">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Antes">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-large" 
+<div class="card loading" 
      data-src="./assets/cas/cas02.jpg" 
      onclick="openLightbox('cas',1)"
      tabindex="0"
      role="button"
      aria-label="Open image: Fratura">
-  <div class="card-img-container">
-    <img class="card-img" alt="Fratura">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Fratura">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-large" 
+<div class="card loading" 
      data-src="./assets/cas/cas03.jpg" 
      onclick="openLightbox('cas',2)"
      tabindex="0"
      role="button"
      aria-label="Open image: Instável">
-  <div class="card-img-container">
-    <img class="card-img" alt="Instável">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Instável">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-large" 
+<div class="card loading" 
      data-src="./assets/cas/cas04.jpg" 
      onclick="openLightbox('cas',3)"
      tabindex="0"
      role="button"
      aria-label="Open image: Suspensa">
-  <div class="card-img-container">
-    <img class="card-img" alt="Suspensa">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Suspensa">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-large" 
+<div class="card loading" 
      data-src="./assets/cas/cas05.jpg" 
      onclick="openLightbox('cas',4)"
      tabindex="0"
      role="button"
      aria-label="Open image: Eco">
-  <div class="card-img-container">
-    <img class="card-img" alt="Eco">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Eco">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-large" 
+<div class="card loading" 
      data-src="./assets/cas/cas06.jpg" 
      onclick="openLightbox('cas',5)"
      tabindex="0"
      role="button"
      aria-label="Open image: Padrão">
-  <div class="card-img-container">
-    <img class="card-img" alt="Padrão">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Padrão">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-large" 
+<div class="card loading" 
      data-src="./assets/cas/cas07.jpg" 
      onclick="openLightbox('cas',6)"
      tabindex="0"
      role="button"
      aria-label="Open image: Colapso">
-  <div class="card-img-container">
-    <img class="card-img" alt="Colapso">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Colapso">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-large" 
+<div class="card loading" 
      data-src="./assets/cas/cas08.jpg" 
      onclick="openLightbox('cas',7)"
      tabindex="0"
      role="button"
      aria-label="Open image: Depois">
-  <div class="card-img-container">
-    <img class="card-img" alt="Depois">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Depois">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
 </div>
 
@@ -893,148 +985,187 @@ footer {
 <p>Portugal · 2009–2018</p>
 </div>
 <div class="projects">
-<div class="card loading card-size-small" 
+<div class="card loading" 
      data-src="./assets/estruturas/descontrucoes_costa-castelo_002-Enhanced-NR.jpg" 
      onclick="openLightbox('estruturas',0)"
      tabindex="0"
      role="button"
      aria-label="Open image: Estrutura 1">
-  <div class="card-img-container">
-    <img class="card-img" alt="Estrutura 1">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Estrutura 1">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-small" 
+<div class="card loading" 
      data-src="./assets/estruturas/20150321_6264_copy.jpg" 
      onclick="openLightbox('estruturas',1)"
      tabindex="0"
      role="button"
      aria-label="Open image: Estrutura 2">
-  <div class="card-img-container">
-    <img class="card-img" alt="Estrutura 2">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Estrutura 2">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-small" 
+<div class="card loading" 
      data-src="./assets/estruturas/IMG_9098-2.jpg" 
      onclick="openLightbox('estruturas',2)"
      tabindex="0"
      role="button"
      aria-label="Open image: Estrutura 3">
-  <div class="card-img-container">
-    <img class="card-img" alt="Estrutura 3">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Estrutura 3">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-small" 
+<div class="card loading" 
      data-src="./assets/estruturas/0O1A1783.jpg" 
      onclick="openLightbox('estruturas',3)"
      tabindex="0"
      role="button"
      aria-label="Open image: Estrutura 4">
-  <div class="card-img-container">
-    <img class="card-img" alt="Estrutura 4">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Estrutura 4">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-small" 
+<div class="card loading" 
      data-src="./assets/estruturas/cid31.jpg" 
      onclick="openLightbox('estruturas',4)"
      tabindex="0"
      role="button"
      aria-label="Open image: Estrutura 5">
-  <div class="card-img-container">
-    <img class="card-img" alt="Estrutura 5">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Estrutura 5">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-small" 
+<div class="card loading" 
      data-src="./assets/estruturas/Terraco_006.jpg" 
      onclick="openLightbox('estruturas',5)"
      tabindex="0"
      role="button"
      aria-label="Open image: Estrutura 6">
-  <div class="card-img-container">
-    <img class="card-img" alt="Estrutura 6">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Estrutura 6">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-small" 
+<div class="card loading" 
      data-src="./assets/estruturas/Variacoes_sobre_telhado_001_cor_1.jpg" 
      onclick="openLightbox('estruturas',6)"
      tabindex="0"
      role="button"
      aria-label="Open image: Estrutura 7">
-  <div class="card-img-container">
-    <img class="card-img" alt="Estrutura 7">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Estrutura 7">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-small" 
+<div class="card loading" 
      data-src="./assets/estruturas/Calcada-noite_014.jpg" 
      onclick="openLightbox('estruturas',7)"
      tabindex="0"
      role="button"
      aria-label="Open image: Estrutura 8">
-  <div class="card-img-container">
-    <img class="card-img" alt="Estrutura 8">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Estrutura 8">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-small" 
+<div class="card loading" 
      data-src="./assets/estruturas/cid02.jpg" 
      onclick="openLightbox('estruturas',8)"
      tabindex="0"
      role="button"
      aria-label="Open image: Estrutura 9">
-  <div class="card-img-container">
-    <img class="card-img" alt="Estrutura 9">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Estrutura 9">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-small" 
+<div class="card loading" 
      data-src="./assets/estruturas/cid08.jpg" 
      onclick="openLightbox('estruturas',9)"
      tabindex="0"
      role="button"
      aria-label="Open image: Estrutura 10">
-  <div class="card-img-container">
-    <img class="card-img" alt="Estrutura 10">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Estrutura 10">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-small" 
+<div class="card loading" 
      data-src="./assets/estruturas/cid20.jpg" 
      onclick="openLightbox('estruturas',10)"
      tabindex="0"
      role="button"
      aria-label="Open image: Estrutura 11">
-  <div class="card-img-container">
-    <img class="card-img" alt="Estrutura 11">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Estrutura 11">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-small" 
+<div class="card loading" 
      data-src="./assets/estruturas/cid23.jpg" 
      onclick="openLightbox('estruturas',11)"
      tabindex="0"
      role="button"
      aria-label="Open image: Estrutura 12">
-  <div class="card-img-container">
-    <img class="card-img" alt="Estrutura 12">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Estrutura 12">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
-<div class="card loading card-size-small" 
+<div class="card loading" 
      data-src="./assets/estruturas/cid29.jpg" 
      onclick="openLightbox('estruturas',12)"
      tabindex="0"
      role="button"
      aria-label="Open image: Estrutura 13">
-  <div class="card-img-container">
-    <img class="card-img" alt="Estrutura 13">
+  <div class="card-inner">
+    <div class="card-img-container">
+      <img class="card-img" alt="Estrutura 13">
+      <div class="card-overlay"></div>
+    </div>
+    <div class="loading-spinner"></div>
   </div>
-  <div class="loading-spinner"></div>
 </div>
 </div>
 
@@ -1135,7 +1266,12 @@ const imageGroups = {
   }
 };
 
-// Lazy load images com suporte para object-fit: contain
+// Função para detectar se uma imagem é vertical
+function isImageVertical(img) {
+  return img.naturalHeight > img.naturalWidth;
+}
+
+// Lazy load images com ajuste automático
 function lazyLoadImages() {
   const cards = document.querySelectorAll('.card.loading');
   
@@ -1150,13 +1286,26 @@ function lazyLoadImages() {
         
         img.onload = () => {
           imgElement.src = src;
+          
+          // Verificar se a imagem é vertical
+          if (isImageVertical(img)) {
+            imgElement.classList.add('vertical');
+            imgElement.style.objectFit = 'contain';
+          } else {
+            imgElement.classList.remove('vertical');
+            imgElement.style.objectFit = 'cover';
+          }
+          
           card.classList.remove('loading');
           card.setAttribute('data-loaded', 'true');
           const spinner = card.querySelector('.loading-spinner');
           if (spinner) spinner.remove();
           
-          // Ajustar automaticamente a altura baseada na proporção da imagem
-          adjustCardHeight(card, img);
+          // Adicionar um overlay para melhor contraste
+          const overlay = card.querySelector('.card-overlay');
+          if (overlay) {
+            overlay.style.background = 'rgba(0, 0, 0, 0.1)';
+          }
         };
         
         img.onerror = () => {
@@ -1177,26 +1326,6 @@ function lazyLoadImages() {
   });
   
   cards.forEach(card => observer.observe(card));
-}
-
-// Ajustar altura do card baseado na proporção da imagem
-function adjustCardHeight(card, img) {
-  const containerWidth = card.offsetWidth;
-  const imgWidth = img.naturalWidth;
-  const imgHeight = img.naturalHeight;
-  const aspectRatio = imgHeight / imgWidth;
-  
-  // Calcular nova altura mantendo a proporção
-  const newHeight = containerWidth * aspectRatio;
-  
-  // Limitar altura máxima
-  const maxHeight = window.innerWidth < 768 ? 500 : 800;
-  
-  if (newHeight > maxHeight) {
-    card.style.height = maxHeight + 'px';
-  } else {
-    card.style.height = newHeight + 'px';
-  }
 }
 
 // Preload images
@@ -1371,16 +1500,6 @@ function logEvent(eventName, data = {}) {
   console.log('Event:', event);
 }
 
-// Reajustar alturas quando a janela é redimensionada
-function handleResize() {
-  document.querySelectorAll('.card[data-loaded="true"]').forEach(card => {
-    const img = card.querySelector('.card-img');
-    if (img.complete && img.naturalWidth > 0) {
-      adjustCardHeight(card, img);
-    }
-  });
-}
-
 // Animações de entrada
 function initAnimations() {
   // Animar elementos com classe fade-in
@@ -1424,9 +1543,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
-  
-  // Adicionar listener para redimensionamento
-  window.addEventListener('resize', handleResize);
 });
 
 // Handle window resize
@@ -1437,8 +1553,6 @@ window.addEventListener('resize', () => {
     const projectNav = document.querySelector('.project-nav');
     if (projectNav) projectNav.remove();
   }
-  
-  handleResize();
 });
 
 // Melhor navegação por teclado para cards
