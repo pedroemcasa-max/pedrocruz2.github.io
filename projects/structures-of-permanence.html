@@ -44,9 +44,23 @@ body{
   opacity:1;
 }
 
+/* PROJECT NAV (CONSISTENTE COM OS OUTROS) */
+.project-nav{
+  margin-top:74px;
+  text-align:center;
+  opacity:.8;
+  font-size:.85rem;
+}
+.project-nav a{
+  color:#eaeaea;
+  text-decoration:none;
+  margin:0 10px;
+}
+.project-nav a:hover{opacity:1;text-decoration:underline}
+
 /* HEADER */
 header{
-  padding:120px 28px 60px;
+  padding:100px 28px 60px;
 }
 h1{
   margin:0;
@@ -127,19 +141,6 @@ h1{
 .lb-prev{left:22px}
 .lb-next{right:22px}
 
-/* PROJECT NAV */
-.project-nav{
-  padding:40px 28px 80px;
-  text-align:center;
-  opacity:.7;
-}
-.project-nav a{
-  color:#eaeaea;
-  text-decoration:none;
-  margin:0 12px;
-}
-.project-nav a:hover{text-decoration:underline}
-
 footer{
   text-align:center;
   padding:20px;
@@ -165,6 +166,13 @@ footer{
   <span id="enb" onclick="setLang('en')">EN</span>
 </div>
 
+<!-- NAVIGAÇÃO ENTRE PROJECTOS -->
+<div class="project-nav">
+  <a href="project-4.html">← Projecto anterior</a>
+  <a href="../index.html">Home</a>
+  <a href="project-1.html">Projecto seguinte →</a>
+</div>
+
 <header>
   <h1>Structures of Permanence</h1>
 </header>
@@ -179,7 +187,6 @@ footer{
   <p>Some photographs are made in single long exposures with focal-length variation, emphasising a quiet sense of displacement within the structure itself.</p>
 </section>
 
-<!-- GALLERY -->
 <div class="gallery">
   <img src="../assets/estrutura/_1est18.jpg"  data-caption="Silent Facade">
   <img src="../assets/estrutura/_2est28.jpg"  data-caption="Sun Tracing Windows">
@@ -196,7 +203,6 @@ footer{
   <img src="../assets/estrutura/_13est10.jpg" data-caption="Night Windows">
 </div>
 
-<!-- LIGHTBOX -->
 <div class="lightbox" id="lb">
   <div class="lb-nav lb-left" onclick="prevImg()"></div>
   <div class="lb-nav lb-right" onclick="nextImg()"></div>
@@ -206,11 +212,6 @@ footer{
 
   <img id="lbimg">
   <div class="caption" id="lbcap"></div>
-</div>
-
-<div class="project-nav">
-  <a href="project-4.html">← Last Night</a>
-  <a href="project-1.html">From Blue Walls to White Silence →</a>
 </div>
 
 <footer>© 2025 — Pedro Cruz</footer>
@@ -225,31 +226,16 @@ function openLB(i){
   lb.classList.add("active");
   updateLB();
 }
-
-function closeLB(){
-  lb.classList.remove("active");
-}
-
+function closeLB(){ lb.classList.remove("active"); }
 function updateLB(){
   lbimg.src=imgs[current].src;
   lbcap.textContent = imgs[current].dataset.caption;
 }
-
-function nextImg(){
-  current=(current+1)%imgs.length;
-  updateLB();
-}
-
-function prevImg(){
-  current=(current-1+imgs.length)%imgs.length;
-  updateLB();
-}
+function nextImg(){ current=(current+1)%imgs.length; updateLB(); }
+function prevImg(){ current=(current-1+imgs.length)%imgs.length; updateLB(); }
 
 imgs.forEach((img,i)=>img.addEventListener("click",()=>openLB(i)));
-
-lb.addEventListener("click",e=>{
-  if(e.target===lb) closeLB();
-});
+lb.addEventListener("click",e=>{ if(e.target===lb) closeLB(); });
 
 /* KEYBOARD */
 document.addEventListener("keydown",e=>{
