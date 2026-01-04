@@ -108,8 +108,8 @@ header p{
 
 .caption{
   margin-top:20px;
-  font-size:.85rem;
-  opacity:.75;
+  font-size:.9rem;
+  opacity:.8;
   text-align:center;
   padding:0 20px;
 }
@@ -244,6 +244,7 @@ const images=[
   "../assets/cor/Paisagen_cheff07.jpg"
 ];
 
+/* --- TITULOS PT --- */
 const captionsPT=[
   "Cidade habitada",
   "Saída",
@@ -252,6 +253,7 @@ const captionsPT=[
   "Silêncio"
 ];
 
+/* --- TITLES EN --- */
 const captionsEN=[
   "Living City",
   "Exit",
@@ -295,15 +297,14 @@ function prevImg(){
   updateLB();
 }
 
-/* fechar ao clicar fora */
+/* CLICK OUTSIDE TO CLOSE */
 lb.addEventListener("click",e=>{
   if(e.target===lb) closeLB();
 });
 
-/* navegação por teclado */
+/* KEYBOARD NAV */
 document.addEventListener("keydown",e=>{
 
-  /* quando o lightbox está aberto */
   if(lb.classList.contains("active")){
     if(e.key==="ArrowRight") nextImg();
     if(e.key==="ArrowLeft") prevImg();
@@ -311,7 +312,7 @@ document.addEventListener("keydown",e=>{
     return;
   }
 
-  /* quando o lightbox está fechado → navegar entre projectos */
+  /* BETWEEN PROJECTS */
   if(e.key==="ArrowLeft") window.location.href="project-4.html";
   if(e.key==="ArrowRight") window.location.href="project-2.html";
 });
