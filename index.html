@@ -8,136 +8,152 @@
 <style>
 
 body{
-font-family: Arial, Helvetica, sans-serif;
-margin:0;
-padding:0;
-color:#111;
+  font-family: Arial, Helvetica, sans-serif;
+  margin:0;
+  padding:0;
+  color:#111;
+  background:#fafafa;
 }
 
 /* HEADER */
 
 .header{
-padding:80px 30px 40px 30px;
-text-align:center;
+  padding:95px 30px 55px 30px;
+  text-align:center;
 }
 
 .header h1{
-font-size:34px;
-font-weight:400;
-margin-bottom:10px;
+  font-size:34px;
+  font-weight:400;
+  margin-bottom:10px;
 }
 
 .header p{
-color:#555;
+  color:#555;
+  letter-spacing:.5px;
 }
 
 
 /* PROJECT GRID */
 
 .projects{
-max-width:1100px;
-margin:60px auto;
-padding:0 20px;
-display:grid;
-grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-gap:30px;
+  max-width:1100px;
+  margin:40px auto 80px;
+  padding:0 20px;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap:34px;
 }
 
 .project{
-text-align:center;
+  text-align:center;
 }
 
 .project img{
-width:100%;
-height: auto;
-border-radius:4px;
-cursor:pointer;
-transition: opacity .25s ease;
+  width:100%;
+  height: auto;
+  border-radius:4px;
+  cursor:pointer;
+  transition: opacity .25s ease, transform .25s ease;
+  box-shadow: 0 8px 18px rgba(0,0,0,.08);
 }
 
 .project img:hover{
-opacity:0.8;
+  opacity:0.9;
+  transform: translateY(-2px);
 }
 
 .project-title{
-margin-top:10px;
-font-size:16px;
-font-weight:600;
+  margin-top:10px;
+  font-size:17px;
+  font-weight:600;
 }
 
 .project-desc{
-font-size:14px;
-color:#666;
+  font-size:14px;
+  color:#666;
+  margin-top:4px;
 }
 
 
 /* LIGHTBOX */
 
 .lightbox{
-display:none;
-position:fixed;
-left:0;
-top:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.92);
-z-index:9999;
-align-items:center;
-justify-content:center;
+  display:none;
+  position:fixed;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,.92);
+  z-index:9999;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  padding:14px;
+  box-sizing:border-box;
 }
 
 .lightbox img{
-max-width:90%;
-max-height:85%;
-border-radius:4px;
+  max-width:92%;
+  max-height:80%;
+  border-radius:4px;
 }
 
 .lightbox-caption{
-margin-top:15px;
-text-align:center;
-color:#eee;
-font-size:14px;
-max-width:90%;
+  margin-top:14px;
+  text-align:center;
+  color:#eee;
+  font-size:14px;
+  max-width:92%;
 }
 
 .lightbox-close{
-position:absolute;
-top:20px;
-right:30px;
-font-size:30px;
-color:#fff;
-cursor:pointer;
+  position:absolute;
+  top:18px;
+  right:24px;
+  font-size:30px;
+  color:#fff;
+  cursor:pointer;
 }
 
 .nav-btn{
-position:absolute;
-top:50%;
-transform:translateY(-50%);
-font-size:40px;
-color:white;
-cursor:pointer;
-padding:10px 14px;
-background:rgba(0,0,0,.4);
-border-radius:6px;
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:40px;
+  color:white;
+  cursor:pointer;
+  padding:10px 14px;
+  background:rgba(0,0,0,.35);
+  border-radius:6px;
 }
 
 .nav-btn:hover{
-background:black;
+  background:black;
 }
 
 #prev{ left:25px; }
 #next{ right:25px; }
 
 
+/* MOBILE TUNING */
+
 @media(max-width:700px){
 
-.header{
-padding-top:60px;
-}
+  .header{
+    padding-top:70px;
+  }
 
-.nav-btn{
-font-size:30px;
-}
+  .nav-btn{
+    font-size:30px;
+    padding:8px 10px;
+  }
+
+  .lightbox img{
+    max-width:96%;
+    max-height:78%;
+  }
 
 }
 
@@ -148,82 +164,77 @@ font-size:30px;
 
 
 <div class="header">
-<h1>Pedro Cruz</h1>
-<p>Fotografia . Observação . Estrutura</p>
+  <h1>Pedro Cruz</h1>
+  <p>Fotografia · Observação · Estrutura</p>
 </div>
 
 
 <div class="projects">
 
 
-<!-- PROJECT 1 -->
-<div class="project">
-<a href="projects/project-1.html">
-<img src="assets/cas/cas01.jpg" alt="">
-</a>
-<div class="project-title">Projecto 1</div>
-<div class="project-desc">Explorações visuais em contexto urbano</div>
+  <!-- PROJECT 1 -->
+  <div class="project">
+    <a href="projects/project-1.html">
+      <img src="assets/cas/cas01.jpg" alt="">
+    </a>
+    <div class="project-title">Projecto 1</div>
+    <div class="project-desc">Explorações visuais em contexto urbano</div>
+  </div>
+
+
+  <!-- PROJECT 2 -->
+  <div class="project">
+    <a href="projects/project-2.html">
+      <img src="assets/pb/pb01.jpg" alt="">
+    </a>
+    <div class="project-title">Projecto 2</div>
+    <div class="project-desc">Narrativas em preto e branco</div>
+  </div>
+
+
+  <!-- PROJECT 3 -->
+  <div class="project">
+    <a href="projects/project-3.html">
+      <img src="assets/mia/mia01.jpg" alt="">
+    </a>
+    <div class="project-title">Projecto 3</div>
+    <div class="project-desc">Olhar íntimo e aproximado</div>
+  </div>
+
+
+  <!-- PROJECT 4 -->
+  <div class="project">
+    <a href="projects/project-4.html">
+      <img src="assets/cor/cor01.jpg" alt="">
+    </a>
+    <div class="project-title">Projecto 4</div>
+    <div class="project-desc">Cor, ambiente e textura</div>
+  </div>
+
+
+  <!-- ⭐ PROJECT 5 — STRUCTURES OF PERMANENCE -->
+  <div class="project">
+    <a href="projects/structures-of-permanence.html">
+      <img src="assets/estrutura/_1est18.jpg" alt="Structures of Permanence">
+    </a>
+    <div class="project-title">Structures of Permanence</div>
+    <div class="project-desc">Arquitecturas que persistem, resistem e se transformam</div>
+  </div>
+
+
 </div>
-
-
-<!-- PROJECT 2 -->
-<div class="project">
-<a href="projects/project-2.html">
-<img src="assets/pb/pb01.jpg" alt="">
-</a>
-<div class="project-title">Projecto 2</div>
-<div class="project-desc">Narrativas em preto e branco</div>
-</div>
-
-
-<!-- PROJECT 3 -->
-<div class="project">
-<a href="projects/project-3.html">
-<img src="assets/mia/mia01.jpg" alt="">
-</a>
-<div class="project-title">Projecto 3</div>
-<div class="project-desc">Olhar íntimo e aproximado</div>
-</div>
-
-
-<!-- PROJECT 4 -->
-<div class="project">
-<a href="projects/project-4.html">
-<img src="assets/cor/cor01.jpg" alt="">
-</a>
-<div class="project-title">Projecto 4</div>
-<div class="project-desc">Cor, ambiente e textura</div>
-</div>
-
-
-
-<!-- PROJECT 5 — STRUCTURES OF PERMANENCE -->
-<div class="project">
-<a href="projects/structures-of-permanence.html">
-<img src="assets/estrutura/_1est18.jpg" alt="Structures of Permanence">
-</a>
-<div class="project-title">Structures of Permanence</div>
-<div class="project-desc">Arquitecturas que persistem, resistem e se transformam</div>
-</div>
-
-
-</div>
-
-
 
 
 
 <!-- LIGHTBOX -->
 
 <div class="lightbox" id="lightbox">
-<span class="lightbox-close" onclick="closeLightbox()">×</span>
-<span class="nav-btn" id="prev" onclick="changeImage(-1)">❮</span>
-<span class="nav-btn" id="next" onclick="changeImage(1)">❯</span>
+  <span class="lightbox-close" onclick="closeLightbox()">×</span>
+  <span class="nav-btn" id="prev" onclick="changeImage(-1)">❮</span>
+  <span class="nav-btn" id="next" onclick="changeImage(1)">❯</span>
 
-<div class="lightbox-content">
-<img id="lightbox-img">
-<div class="lightbox-caption" id="lightbox-caption"></div>
-</div>
+  <img id="lightbox-img">
+  <div class="lightbox-caption" id="lightbox-caption"></div>
 </div>
 
 
@@ -235,48 +246,49 @@ let lightImg = document.getElementById("lightbox-img");
 let caption = document.getElementById("lightbox-caption");
 let currentIndex = 0;
 
+// captions aligned to projects
 let captions = [
-"Projecto 1 — Explorações visuais em contexto urbano",
-"Projecto 2 — Narrativas em preto e branco",
-"Projecto 3 — Olhar íntimo e aproximado",
-"Projecto 4 — Cor, ambiente e textura",
-"Structures of Permanence — Arquitecturas que persistem"
+  "Projecto 1 — Explorações visuais em contexto urbano",
+  "Projecto 2 — Narrativas em preto e branco",
+  "Projecto 3 — Olhar íntimo e aproximado",
+  "Projecto 4 — Cor, ambiente e textura",
+  "Structures of Permanence — Arquitecturas que persistem"
 ];
 
 // Open
 images.forEach((img,i)=>{
-img.addEventListener("click", ()=>{
-currentIndex = i;
-openLightbox();
-});
+  img.addEventListener("click", ()=>{
+    currentIndex = i;
+    openLightbox();
+  });
 });
 
 function openLightbox(){
-lightbox.style.display="flex";
-lightImg.src = images[currentIndex].src;
-caption.textContent = captions[currentIndex] || "";
+  lightbox.style.display="flex";
+  lightImg.src = images[currentIndex].src;
+  caption.textContent = captions[currentIndex] || "";
 }
 
 // Close
 function closeLightbox(){
-lightbox.style.display="none";
+  lightbox.style.display="none";
 }
 
 // Change
 function changeImage(step){
-currentIndex += step;
-if(currentIndex<0) currentIndex = images.length-1;
-if(currentIndex>=images.length) currentIndex = 0;
-openLightbox();
+  currentIndex += step;
+  if(currentIndex<0) currentIndex = images.length-1;
+  if(currentIndex>=images.length) currentIndex = 0;
+  openLightbox();
 }
 
-// Key Controls
+// Keyboard
 document.addEventListener("keydown", e=>{
-if(lightbox.style.display==="flex"){
-if(e.key==="ArrowRight") changeImage(1);
-if(e.key==="ArrowLeft") changeImage(-1);
-if(e.key==="Escape") closeLightbox();
-}
+  if(lightbox.style.display==="flex"){
+    if(e.key==="ArrowRight") changeImage(1);
+    if(e.key==="ArrowLeft") changeImage(-1);
+    if(e.key==="Escape") closeLightbox();
+  }
 });
 </script>
 
