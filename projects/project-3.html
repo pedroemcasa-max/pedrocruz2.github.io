@@ -1,64 +1,287 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Inside the Sound — Pedro Cruz</title>
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Helvetica,Arial,sans-serif;background:#0b0b0b;color:#eaeaea}
-header{text-align:center;padding:120px 24px 80px}
-header h1{font-weight:400}
-header p{opacity:.6}
-.text{max-width:720px;margin:0 auto 120px;font-size:.95rem;opacity:.85}
-.projects{max-width:1400px;margin:0 auto;padding:0 24px 160px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:40px}
-.card{aspect-ratio:4/3;background-size:cover;background-position:center;cursor:pointer}
-.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.96);display:none;align-items:center;justify-content:center;flex-direction:column}
+body{
+  margin:0;
+  font-family:Helvetica,Arial,sans-serif;
+  background:#0b0b0b;
+  color:#eaeaea;
+  line-height:1.6;
+}
+
+/* HOME LINK */
+.home-link{
+  position:fixed;
+  top:20px;
+  left:20px;
+  font-size:.8rem;
+  opacity:.8;
+  z-index:1000;
+}
+.home-link a{
+  text-decoration:none;
+  color:#eaeaea;
+}
+.home-link a:hover{opacity:1}
+
+/* LANG SWITCH */
+.lang-switch{
+  position:fixed;
+  top:20px;
+  right:20px;
+  font-size:.8rem;
+  opacity:.8;
+  z-index:1000;
+}
+.lang-switch span{
+  margin-left:12px;
+  cursor:pointer;
+}
+.lang-switch .active{
+  text-decoration:underline;
+  opacity:1;
+}
+
+/* HEADER */
+header{
+  padding:120px 24px 80px;
+  text-align:center;
+}
+header h1{
+  font-size:1.8rem;
+  font-weight:400;
+}
+header p{
+  font-size:.9rem;
+  opacity:.6;
+}
+
+/* TEXT */
+.text{
+  max-width:720px;
+  margin:0 auto 120px;
+  font-size:.95rem;
+  opacity:.9;
+}
+.text p{margin-bottom:1.4em}
+
+/* GRID */
+.projects{
+  max-width:1400px;
+  margin:0 auto;
+  padding:0 24px 160px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:40px;
+}
+.card{
+  aspect-ratio:4/3;
+  background-size:cover;
+  background-position:center;
+  cursor:pointer;
+}
+
+/* LIGHTBOX */
+.lightbox{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.96);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  z-index:999;
+}
 .lightbox.active{display:flex}
-.lightbox img{max-width:92vw;max-height:82vh;object-fit:contain}
-.caption{margin-top:20px;font-size:.85rem;opacity:.6}
-footer{text-align:center;padding:80px 20px;font-size:.8rem;opacity:.5}
+.lightbox img{
+  max-width:92vw;
+  max-height:82vh;
+  object-fit:contain;
+}
+
+.caption{
+  margin-top:20px;
+  font-size:.85rem;
+  opacity:.75;
+  text-align:center;
+  padding:0 20px;
+}
+
+/* CLICK ZONES */
+.lb-nav{
+  position:fixed;
+  top:0;
+  bottom:0;
+  width:50%;
+}
+.lb-left{left:0}
+.lb-right{right:0}
+
+/* BUTTONS */
+.lb-btn{
+  position:fixed;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:38px;
+  padding:6px 14px;
+  background:rgba(0,0,0,.45);
+  border-radius:10px;
+  cursor:pointer;
+  opacity:.85;
+}
+.lb-btn:hover{background:black}
+.lb-prev{left:22px}
+.lb-next{right:22px}
+
+/* FOOTER */
+footer{
+  padding:80px 20px;
+  text-align:center;
+  font-size:.8rem;
+  opacity:.5;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+  header h1{font-size:1.45rem}
+  .projects{gap:20px}
+  .caption{font-size:.8rem}
+}
 </style>
 </head>
 
 <body>
 
+<div class="home-link">
+  <a href="../index.html">← Home</a>
+</div>
+
+<div class="lang-switch">
+  <span id="pt" class="active" onclick="setLang('pt')">PT</span>
+  <span id="en" onclick="setLang('en')">EN</span>
+</div>
+
 <header>
-<h1>Inside the Sound</h1>
-<p>2024</p>
+  <h1 class="lang-pt">Dentro do Som</h1>
+  <h1 class="lang-en" style="display:none;">Inside the Sound</h1>
+
+  <p class="lang-pt">2016</p>
+  <p class="lang-en" style="display:none;">2016</p>
 </header>
 
 <section class="text">
-<p>This project unfolds from the relationship between photography and listening. Images operate as restrained gestures, closer to scores than to representations.</p>
+
+  <div class="lang-pt">
+    <p>Uma aproximação ao corpo como território acústico. As imagens surgem como ressonâncias físicas — ecos visuais de vibrações e estados de escuta.</p>
+  </div>
+
+  <div class="lang-en" style="display:none;">
+    <p>An exploration of the body as an acoustic territory. The images arise as physical resonances — visual echoes of vibration and listening states.</p>
+  </div>
+
 </section>
 
 <section class="projects">
-<div class="card" style="background-image:url('../assets/mia/mia01.jpg')" onclick="openLB(0)"></div>
-<div class="card" style="background-image:url('../assets/mia/mia03.jpg')" onclick="openLB(1)"></div>
-<div class="card" style="background-image:url('../assets/mia/mia05.jpg')" onclick="openLB(2)"></div>
-<div class="card" style="background-image:url('../assets/mia/mia07.jpg')" onclick="openLB(3)"></div>
-<div class="card" style="background-image:url('../assets/mia/mia09.jpg')" onclick="openLB(4)"></div>
+  <div class="card" style="background-image:url('../assets/mia/mia01.jpg')" onclick="openLB(0)"></div>
+  <div class="card" style="background-image:url('../assets/mia/mia02.jpg')" onclick="openLB(1)"></div>
+  <div class="card" style="background-image:url('../assets/mia/mia03.jpg')" onclick="openLB(2)"></div>
+  <div class="card" style="background-image:url('../assets/mia/mia04.jpg')" onclick="openLB(3)"></div>
+  <div class="card" style="background-image:url('../assets/mia/mia05.jpg')" onclick="openLB(4)"></div>
 </section>
 
 <footer>© 2025 — Pedro Cruz</footer>
 
-<div class="lightbox" id="lb" onclick="closeLB()">
-<img id="lbimg"><div class="caption" id="lbcap"></div>
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lb">
+  <div class="lb-nav lb-left" onclick="prevImg()"></div>
+  <div class="lb-nav lb-right" onclick="nextImg()"></div>
+
+  <div class="lb-btn lb-prev" onclick="prevImg()">❮</div>
+  <div class="lb-btn lb-next" onclick="nextImg()">❯</div>
+
+  <img id="lbimg" alt="">
+  <div class="caption" id="lbcap"></div>
 </div>
 
 <script>
 const images=[
-"../assets/mia/mia01.jpg",
-"../assets/mia/mia03.jpg",
-"../assets/mia/mia05.jpg",
-"../assets/mia/mia07.jpg",
-"../assets/mia/mia09.jpg"
+  "../assets/mia/mia01.jpg",
+  "../assets/mia/mia02.jpg",
+  "../assets/mia/mia03.jpg",
+  "../assets/mia/mia04.jpg",
+  "../assets/mia/mia05.jpg"
 ];
-const titles=["Presentation","Thread","Release","Negotiation","Statement"];
-function openLB(i){lb.classList.add('active');lbimg.src=images[i];lbcap.textContent=titles[i]}
-function closeLB(){lb.classList.remove('active')}
+
+const captionsPT=[
+  "Frequência I",
+  "Frequência II",
+  "Ressonância",
+  "Eco",
+  "Retorno"
+];
+
+const captionsEN=[
+  "Frequency I",
+  "Frequency II",
+  "Resonance",
+  "Echo",
+  "Return"
+];
+
+let current=0;
+let lang="pt";
+
+function setLang(l){
+  lang=l;
+  document.querySelectorAll('.lang-pt').forEach(e=>e.style.display=l==="pt"?"block":"none");
+  document.querySelectorAll('.lang-en').forEach(e=>e.style.display=l==="en"?"block":"none");
+  pt.classList.toggle('active',l==="pt");
+  en.classList.toggle('active',l==="en");
+  updateLB();
+}
+
+function openLB(i){
+  current=i;
+  updateLB();
+  lb.classList.add("active");
+}
+
+function closeLB(){lb.classList.remove("active")}
+
+function updateLB(){
+  lbimg.src=images[current];
+  lbcap.textContent = lang==="pt" ? captionsPT[current] : captionsEN[current];
+}
+
+function nextImg(){
+  current=(current+1)%images.length;
+  updateLB();
+}
+
+function prevImg(){
+  current=(current-1+images.length)%images.length;
+  updateLB();
+}
+
+/* close when clicking the dark background */
+lb.addEventListener("click",e=>{
+  if(e.target===lb) closeLB();
+});
+
+/* keyboard arrows + ESC */
+document.addEventListener("keydown",e=>{
+  if(!lb.classList.contains("active")) return;
+  if(e.key==="ArrowRight") nextImg();
+  if(e.key==="ArrowLeft") prevImg();
+  if(e.key==="Escape") closeLB();
+});
 </script>
 
 </body>
 </html>
-
