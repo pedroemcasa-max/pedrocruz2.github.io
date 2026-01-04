@@ -15,6 +15,21 @@ body{
   line-height:1.6;
 }
 
+/* HOME LINK */
+.home-link{
+  position:fixed;
+  top:20px;
+  left:20px;
+  font-size:.8rem;
+  opacity:.8;
+  z-index:1000;
+}
+.home-link a{
+  text-decoration:none;
+  color:#eaeaea;
+}
+.home-link a:hover{opacity:1}
+
 /* LANG SWITCH */
 .lang-switch{
   position:fixed;
@@ -89,6 +104,7 @@ header p{
   max-height:82vh;
   object-fit:contain;
 }
+
 .caption{
   margin-top:20px;
   font-size:.85rem;
@@ -106,6 +122,22 @@ header p{
 }
 .lb-left{left:0}
 .lb-right{right:0}
+
+/* BUTTONS */
+.lb-btn{
+  position:fixed;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:38px;
+  padding:6px 14px;
+  background:rgba(0,0,0,.45);
+  border-radius:10px;
+  cursor:pointer;
+  opacity:.85;
+}
+.lb-btn:hover{background:black}
+.lb-prev{left:22px}
+.lb-next{right:22px}
 
 /* FOOTER */
 footer{
@@ -125,6 +157,10 @@ footer{
 </head>
 
 <body>
+
+<div class="home-link">
+  <a href="../index.html">← Home</a>
+</div>
 
 <div class="lang-switch">
   <span id="pt" class="active" onclick="setLang('pt')">PT</span>
@@ -166,8 +202,12 @@ footer{
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lb">
   <div class="lb-nav lb-left" onclick="prevImg()"></div>
-  <img id="lbimg" alt="">
   <div class="lb-nav lb-right" onclick="nextImg()"></div>
+
+  <div class="lb-btn lb-prev" onclick="prevImg()">❮</div>
+  <div class="lb-btn lb-next" onclick="nextImg()">❯</div>
+
+  <img id="lbimg" alt="">
   <div class="caption" id="lbcap"></div>
 </div>
 
@@ -203,8 +243,8 @@ function setLang(l){
   lang=l;
   document.querySelectorAll('.lang-pt').forEach(e=>e.style.display=l==="pt"?"block":"none");
   document.querySelectorAll('.lang-en').forEach(e=>e.style.display=l==="en"?"block":"none");
-  document.getElementById('pt').classList.toggle('active',l==="pt");
-  document.getElementById('en').classList.toggle('active',l==="en");
+  pt.classList.toggle('active',l==="pt");
+  en.classList.toggle('active',l==="en");
   updateLB();
 }
 
@@ -231,7 +271,7 @@ function prevImg(){
   updateLB();
 }
 
-/* only close when clicking background */
+/* close only if background clicked */
 lb.addEventListener("click",e=>{
   if(e.target===lb) closeLB();
 });
