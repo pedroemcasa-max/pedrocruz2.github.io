@@ -10,36 +10,175 @@
 <title>Pedro Cruz</title>
 
 <style>
-/* (… o teu CSS mantém-se igual — nada alterado …) */
 
-:root {
-  --bg-primary: #0b0b0b;
-  --text-primary: #eaeaea;
-  --transition-speed: 0.3s;
-  --card-shadow: 0 2px 4px rgba(0,0,0,0.1), 0 8px 16px rgba(0,0,0,0.2);
-  --card-hover-shadow: 0 4px 8px rgba(0,0,0,0.15), 0 12px 24px rgba(0,0,0,0.3), 0 20px 40px rgba(0,0,0,0.4);
+:root{
+  --bg-primary:#0b0b0b;
+  --text-primary:#eaeaea;
+  --transition-speed:.3s;
+  --card-shadow:0 2px 4px rgba(0,0,0,.1),0 8px 16px rgba(0,0,0,.2);
+  --card-hover-shadow:0 4px 8px rgba(0,0,0,.15),0 12px 24px rgba(0,0,0,.3),0 20px 40px rgba(0,0,0,.4);
 }
 
-/* ... CSS OMITTED ONLY HERE TO SAVE SPACE ...
-   → mantém exatamente o teu CSS anterior
-*/
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  margin:0;
+  background:#0b0b0b;
+  color:#eaeaea;
+}
+
+header{
+  padding:40px 20px 10px;
+  text-align:center;
+}
+
+.fade-in{ animation:fade-in 1s ease forwards; opacity:0; }
+@keyframes fade-in{ to{opacity:1;} }
+
+.project-nav{
+  position:fixed;
+  top:50%;
+  left:20px;
+  transform:translateY(-50%);
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  z-index:20;
+}
+
+.project-nav a{
+  color:#aaa;
+  text-decoration:none;
+  font-size:.9rem;
+}
+.project-nav a:hover{ color:white; }
+
+.projects{
+  display:grid;
+  grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+  gap:20px;
+  padding:20px;
+}
+
+.card{
+  position:relative;
+  background:#111;
+  border-radius:6px;
+  overflow:hidden;
+  box-shadow:var(--card-shadow);
+  cursor:pointer;
+}
+
+.card-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.loading .card-img{ opacity:0; }
+
+.card.vertical .card-img{ object-fit:contain; }
+
+.loading-spinner{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#777;
+}
+
+/* LIGHTBOX */
+
+.lightbox{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.93);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+
+.lightbox img{
+  max-width:92vw;
+  max-height:92vh;
+}
+
+.lightbox .close,
+.lightbox .prev,
+.lightbox .next{
+  position:fixed;
+  color:white;
+  font-size:40px;
+  cursor:pointer;
+  padding:10px;
+  user-select:none;
+}
+
+.lightbox .close{ top:10px; right:20px; }
+.lightbox .prev{ left:20px; top:50%; transform:translateY(-50%); }
+.lightbox .next{ right:20px; top:50%; transform:translateY(-50%); }
+
+.lightbox-counter{
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  opacity:.8;
+}
+
+.caption{
+  position:fixed;
+  bottom:50px;
+  left:50%;
+  transform:translateX(-50%);
+  opacity:.7;
+}
+
+.project-meta{
+  text-align:center;
+  margin-top:60px;
+}
+
+footer{
+  text-align:center;
+  padding:40px;
+  opacity:.7;
+}
+
+.lang-switch span{
+  cursor:pointer;
+  margin:0 5px;
+}
+
+.lang-switch .active{ text-decoration:underline; }
+
+#backTop{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  opacity:.8;
+}
 
 </style>
 </head>
+
 <body>
 
 <header class="fade-in">
   <div class="lang-switch">
-    <span id="btn-pt" class="active" onclick="setLang('pt')" tabindex="0">PT</span>
-    <span id="btn-en" onclick="setLang('en')" tabindex="0">EN</span>
+    <span id="btn-pt" class="active" onclick="setLang('pt')">PT</span>
+    <span id="btn-en" onclick="setLang('en')">EN</span>
   </div>
-  <div>
-    <h1>Pedro Cruz</h1>
-    <p>Photography · Improvisation · Presence</p>
-  </div>
+
+  <h1>Pedro Cruz</h1>
+  <p>Photography · Improvisation · Presence</p>
 </header>
 
+
 <nav class="project-nav" id="project-nav"></nav>
+
 
 <section class="fade-in">
   <div class="about">
@@ -51,6 +190,7 @@
     </div>
   </div>
 </section>
+
 
 <section>
 
@@ -82,24 +222,28 @@
 </div>
 <div class="projects" id="projects-cas"></div>
 
-<!-- ⭐ NEW PROJECT 5 – STRUCTURES OF PERMANENCE -->
+
+<!-- ⭐ PROJECT 5 — STRUCTURES OF PERMANENCE -->
 <div class="project-meta fade-in" id="project-5">
-  <h2 data-title-pt="Estruturas de Permanência"
-      data-title-en="Structures of Permanence">
+  <h2 data-title-pt="Estruturas de Permanência" data-title-en="Structures of Permanence">
     Structures of Permanence
   </h2>
   <p>Projecto de Longa Duração</p>
 </div>
+
 <div class="projects" id="projects-estrutura"></div>
 
 </section>
+
 
 <footer class="fade-in">
   <p>© 2025 — Pedro Cruz</p>
   <p style="font-size:0.7rem; margin-top:10px; opacity:0.5;">All photographs are copyright protected</p>
 </footer>
 
+
 <button id="backTop" class="hidden" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
@@ -111,27 +255,50 @@
   <div class="caption" id="lightbox-caption"></div>
 </div>
 
+
 <script>
-// =================== CONFIG ===================
+
+// =================== STATE ===================
 let currentLang='pt';
 let currentGroup=null;
 let currentIndex=0;
 
-const imageGroups={
-  cor:{ images:["01","02","04","06","07"].map(n=>`./assets/cor/Paisagen_cheff${n}.jpg`),
-        titles:{pt:["A Cidade Viva","A Saída","O Observador","Ascensão","Silêncio"],
-                en:["Living City","Exit","Watcher","Ascent","Silence"]}},
-  pb:{ images:["01","02","03","05","08"].map(n=>`./assets/pb/Paisagen_pb${n}.jpg`),
-       titles:{pt:["Antes","Céu","Passagem","Entre","Noite"],
-               en:["Before","Sky","Passage","Between","Night"]}},
-  mia:{ images:["01","03","05","07","09"].map(n=>`./assets/mia/mia${n}.jpg`),
-        titles:{pt:["Antes","Fio","Soltar","Negociação","Declaração"],
-                en:["Before","Thread","Release","Negotiation","Statement"]}},
-  cas:{ images:["01","02","03","04","05","06","07","08"].map(n=>`./assets/cas/cas${n}.jpg`),
-        titles:{pt:["Antes","Fratura","Instável","Suspensa","Eco","Padrão","Colapso","Depois"],
-                en:["Before","Fracture","Unstable","Suspended","Echo","Pattern","Collapse","After"]}},
 
-  // ⭐ NEW STRUCTURES SERIES
+// =================== IMAGE GROUPS ===================
+const imageGroups={
+
+  cor:{
+    images:["01","02","04","06","07"].map(n=>`./assets/cor/Paisagen_cheff${n}.jpg`),
+    titles:{
+      pt:["A Cidade Viva","A Saída","O Observador","Ascensão","Silêncio"],
+      en:["Living City","Exit","Watcher","Ascent","Silence"]
+    }
+  },
+
+  pb:{
+    images:["01","02","03","05","08"].map(n=>`./assets/pb/Paisagen_pb${n}.jpg`),
+    titles:{
+      pt:["Antes","Céu","Passagem","Entre","Noite"],
+      en:["Before","Sky","Passage","Between","Night"]
+    }
+  },
+
+  mia:{
+    images:["01","03","05","07","09"].map(n=>`./assets/mia/mia${n}.jpg`),
+    titles:{
+      pt:["Antes","Fio","Soltar","Negociação","Declaração"],
+      en:["Before","Thread","Release","Negotiation","Statement"]
+    }
+  },
+
+  cas:{
+    images:["01","02","03","04","05","06","07","08"].map(n=>`./assets/cas/cas${n}.jpg`),
+    titles:{
+      pt:["Antes","Fratura","Instável","Suspensa","Eco","Padrão","Colapso","Depois"],
+      en:["Before","Fracture","Unstable","Suspended","Echo","Pattern","Collapse","After"]
+    }
+  },
+
   estrutura:{
     images:[
       "./assets/estrutura/_1est18.jpg",
@@ -183,39 +350,133 @@ const imageGroups={
   }
 };
 
-// =================== RESTO DO TEU JS (SEM ALTERAÇÕES)
-// criação de cards, lazyload, lightbox, linguagem, etc
 
+
+// =================== CREATE CARDS ===================
 function isImageVertical(img){ return img.naturalHeight>img.naturalWidth; }
 
 function createCards(groupId){
   const container=document.getElementById('projects-'+groupId);
+
   imageGroups[groupId].images.forEach((src,i)=>{
     const card=document.createElement('div');
     card.className='card loading';
     card.setAttribute('data-src',src);
     card.onclick=()=>openLightbox(groupId,i);
-    card.innerHTML=`<div class="card-inner">
-      <div class="card-img-container">
-        <img class="card-img">
-        <div class="card-overlay"></div>
+
+    card.innerHTML=`
+      <div class="card-inner">
+        <div class="card-img-container">
+          <img class="card-img">
+        </div>
+        <div class="loading-spinner">…</div>
       </div>
-      <div class="loading-spinner"></div>
-    </div>`;
+    `;
+
     container.appendChild(card);
   });
 }
 
 ['cor','pb','mia','cas','estrutura'].forEach(createCards);
+
+
+
+// =================== LAZY LOAD ===================
+function lazyLoadImages(){
+  const cards=document.querySelectorAll('.card');
+  const options={ root:null, rootMargin:"50px", threshold:0.01 };
+
+  const loadImage=(card)=>{
+    const img=card.querySelector('.card-img');
+    const src=card.getAttribute('data-src');
+
+    img.onload=()=>{
+      card.classList.remove('loading');
+      if(isImageVertical(img)) card.classList.add('vertical');
+    };
+
+    img.src=src;
+  };
+
+  const observer=new IntersectionObserver((entries,obs)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        loadImage(entry.target);
+        obs.unobserve(entry.target);
+      }
+    });
+  },options);
+
+  cards.forEach(card=>observer.observe(card));
+}
+
 lazyLoadImages();
 
-// =================== NAV LATERAL — APANHA TODOS OS PROJECTOS
+
+
+// =================== LIGHTBOX ===================
+function openLightbox(group,i){
+  currentGroup=group;
+  currentIndex=i;
+  const lb=document.getElementById('lightbox');
+  lb.style.display='flex';
+  updateLightbox();
+}
+
+function closeLightbox(){ document.getElementById('lightbox').style.display='none'; }
+
+function nextImage(e){ e.stopPropagation(); currentIndex++; updateLightbox(); }
+function prevImage(e){ e.stopPropagation(); currentIndex--; updateLightbox(); }
+
+function updateLightbox(){
+  const group=imageGroups[currentGroup];
+  if(currentIndex<0) currentIndex=group.images.length-1;
+  if(currentIndex>=group.images.length) currentIndex=0;
+
+  document.getElementById('lightbox-img').src=group.images[currentIndex];
+  document.getElementById('lightbox-counter').textContent=
+    `${currentIndex+1} / ${group.images.length}`;
+  document.getElementById('lightbox-caption').textContent=
+    group.titles[currentLang][currentIndex];
+}
+
+
+
+// =================== LANGUAGE ===================
+function setLang(lang){
+  currentLang=lang;
+
+  document.getElementById('btn-pt').classList.toggle('active',lang==='pt');
+  document.getElementById('btn-en').classList.toggle('active',lang==='en');
+
+  document.querySelectorAll('.lang-pt').forEach(el=>{
+    el.style.display=lang==='pt'?'block':'none';
+  });
+
+  document.querySelectorAll('.lang-en').forEach(el=>{
+    el.style.display=lang==='en'?'block':'none';
+  });
+
+  document.querySelectorAll('#project-nav a').forEach(a=>{
+    a.textContent=a.getAttribute(`data-title-${lang}`);
+  });
+
+  document.querySelectorAll('.project-meta h2').forEach(h=>{
+    h.textContent=h.getAttribute(`data-title-${lang}`);
+  });
+}
+
+
+
+// =================== SIDE INDEX ===================
 const nav=document.getElementById('project-nav');
 document.querySelectorAll('.project-meta').forEach(sec=>{
   const a=document.createElement('a');
   a.href='#'+sec.id;
-  a.setAttribute('data-title-pt',sec.querySelector('h2').getAttribute('data-title-pt'));
-  a.setAttribute('data-title-en',sec.querySelector('h2').getAttribute('data-title-en'));
+  a.setAttribute('data-title-pt',
+    sec.querySelector('h2').getAttribute('data-title-pt'));
+  a.setAttribute('data-title-en',
+    sec.querySelector('h2').getAttribute('data-title-en'));
   a.textContent=sec.querySelector('h2').getAttribute('data-title-pt');
   nav.appendChild(a);
 });
