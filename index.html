@@ -3,160 +3,151 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Portfolio de Pedro Cruz, fotógrafo. Photography · Improvisation · Presence">
-<meta property="og:title" content="Pedro Cruz - Photography Portfolio">
-<meta property="og:description" content="Photography · Improvisation · Presence">
-<meta property="og:type" content="website">
+<meta name="description" content="Portfolio de Pedro Cruz, fotógrafo.">
 <title>Pedro Cruz</title>
-
-<!-- Preload critical images -->
-<link rel="preload" href="./assets/cor/Paisagen_cheff01.jpg" as="image">
-<link rel="preload" href="./assets/pb/Paisagen_pb01.jpg" as="image">
-<link rel="preload" href="./assets/mia/mia01.jpg" as="image">
 
 <style>
 :root {
-  --bg-primary: #0b0b0b;
-  --text-primary: #eaeaea;
-  --transition-speed: 0.3s;
-  --card-shadow: 0 2px 4px rgba(0,0,0,0.1), 0 8px 16px rgba(0,0,0,0.2);
-  --card-hover-shadow: 0 4px 8px rgba(0,0,0,0.15), 0 12px 24px rgba(0,0,0,0.3), 0 20px 40px rgba(0,0,0,0.4);
+  --bg:#0b0b0b;
+  --fg:#eaeaea;
 }
 
-* { box-sizing: border-box; }
+*{box-sizing:border-box}
 
-body {
-  margin: 0;
-  font-family: Helvetica, Arial, sans-serif;
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  line-height: 1.6;
-  scroll-behavior: smooth;
+body{
+  margin:0;
+  font-family:Helvetica,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--fg);
+  line-height:1.6;
 }
 
-header {
-  min-height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  position: relative;
-  padding: 0 20px;
-  background: linear-gradient(rgba(11,11,11,0.9), rgba(11,11,11,0.7));
+header{
+  min-height:80vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
 }
 
-header h1 {
-  font-size: clamp(1.8rem, 5vw, 2.2rem);
-  font-weight: 400;
-  margin: 0;
+header h1{font-weight:400;margin:0}
+header p{opacity:.7;font-size:.9rem}
+
+.lang{
+  position:absolute;
+  top:24px;
+  right:24px;
+  font-size:.75rem;
+}
+.lang a{color:var(--fg);opacity:.6;text-decoration:none;margin-left:8px}
+.lang a.active{text-decoration:underline;opacity:1}
+
+section{
+  max-width:1400px;
+  margin:0 auto;
+  padding:100px 24px;
 }
 
-header p {
-  margin-top: 12px;
-  font-size: clamp(.85rem, 2.5vw, .95rem);
-  opacity: .85;
+.about{
+  max-width:720px;
+  margin:0 auto;
+  text-align:center;
+  opacity:.85;
 }
 
-.lang-switch {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  font-size: .75rem;
+.project-index{
+  text-align:center;
+  padding-top:40px;
+}
+.project-index a{
+  display:inline-block;
+  margin:0 12px;
+  font-size:.8rem;
+  color:var(--fg);
+  opacity:.6;
+  text-decoration:none;
+}
+.project-index a:hover{opacity:1;text-decoration:underline}
+
+.project-meta{text-align:center;margin-bottom:36px}
+.project-meta h2{font-weight:400}
+
+.projects{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:30px;
 }
 
-.lang-switch span {
-  margin-left: 8px;
-  cursor: pointer;
-  padding: 4px 8px;
-  border-radius: 4px;
+.card{aspect-ratio:4/3;cursor:pointer}
+.card img{width:100%;height:100%;object-fit:cover}
+
+.project-arrows{
+  text-align:center;
+  margin:60px 0 120px;
+}
+.project-arrows a{
+  font-size:1.4rem;
+  margin:0 20px;
+  color:var(--fg);
+  opacity:.4;
+  text-decoration:none;
+}
+.project-arrows a:hover{opacity:1}
+
+footer{
+  text-align:center;
+  padding:80px 20px;
+  opacity:.6;
+  font-size:.8rem;
+  border-top:1px solid rgba(255,255,255,.1);
 }
 
-.lang-switch span.active {
-  text-decoration: underline;
-  background: rgba(255,255,255,0.15);
+/* LIGHTBOX */
+#lightbox{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.95);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
 }
-
-section {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: clamp(60px, 8vw, 120px) 24px;
+#lightbox.active{display:flex}
+#lightbox img{
+  max-width:90vw;
+  max-height:90vh;
 }
-
-section:first-of-type {
-  padding-top: clamp(40px, 6vw, 80px);
-  padding-bottom: clamp(40px, 6vw, 80px);
+.lb-arrow{
+  position:absolute;
+  top:50%;
+  font-size:2rem;
+  color:white;
+  cursor:pointer;
+  opacity:.5;
+  user-select:none;
 }
-
-.about {
-  max-width: 720px;
-  margin: 0 auto;
-  font-size: .95rem;
-  opacity: .85;
+.lb-arrow:hover{opacity:1}
+.lb-prev{left:30px}
+.lb-next{right:30px}
+.lb-close{
+  position:absolute;
+  top:20px;
+  right:30px;
+  font-size:1.5rem;
+  cursor:pointer;
+  opacity:.5;
 }
-
-.lang-en { display: none; }
-
-.project-meta {
-  text-align: center;
-  margin-bottom: 36px;
-  scroll-margin-top: 40px;
-}
-
-.project-meta h2 {
-  font-size: clamp(1.2rem, 3vw, 1.4rem);
-  font-weight: 400;
-}
-
-.projects {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
-  gap: 30px;
-  margin-bottom: clamp(80px, 10vw, 140px);
-}
-
-.card {
-  position: relative;
-  cursor: pointer;
-  border-radius: 12px;
-  overflow: hidden;
-  aspect-ratio: 4 / 3;
-  background: #1a1a1a;
-}
-
-.card-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.lightbox {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.98);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.lightbox.active { display: flex; }
-
-footer {
-  padding: 80px 20px;
-  text-align: center;
-  font-size: .8rem;
-  opacity: .7;
-  border-top: 1px solid rgba(255,255,255,0.1);
-}
+.lb-close:hover{opacity:1}
 </style>
 </head>
 
 <body>
 
 <header>
-  <div class="lang-switch">
-    <span id="btn-pt" class="active" onclick="setLang('pt')">PT</span>
-    <span id="btn-en" onclick="setLang('en')">EN</span>
+  <div class="lang">
+    <span class="active">PT</span>
+    <a href="/en/">EN</a>
   </div>
   <div>
     <h1>Pedro Cruz</h1>
@@ -164,14 +155,16 @@ footer {
   </div>
 </header>
 
+<section class="project-index">
+  <a href="#project-1">From Blue Walls to White Silence</a>
+  <a href="#project-2">Under the Same Weather</a>
+  <a href="#project-4">Last Night</a>
+  <a href="#project-3">Inside the Sound</a>
+</section>
+
 <section>
   <div class="about">
-    <div class="lang-pt">
-      <p>Nasci em 1971. A fotografia entrou cedo na minha vida como espaço de observação, escuta e experimentação.</p>
-    </div>
-    <div class="lang-en">
-      <p>I was born in 1971. Photography entered my life early as a space for observation, listening, and experimentation.</p>
-    </div>
+    <p>Nasci em 1971. A fotografia entrou cedo na minha vida como espaço de observação, escuta e experimentação.</p>
   </div>
 </section>
 
@@ -182,41 +175,50 @@ footer {
   <h2>From Blue Walls to White Silence</h2>
   <p>Chefchaouen · 2007</p>
 </div>
-<div class="projects">
-  <div class="card" onclick="openLightbox('cor',0)"><img class="card-img" src="./assets/cor/Paisagen_cheff01.jpg"></div>
-  <div class="card" onclick="openLightbox('cor',1)"><img class="card-img" src="./assets/cor/Paisagen_cheff02.jpg"></div>
-  <div class="card" onclick="openLightbox('cor',2)"><img class="card-img" src="./assets/cor/Paisagen_cheff04.jpg"></div>
-  <div class="card" onclick="openLightbox('cor',3)"><img class="card-img" src="./assets/cor/Paisagen_cheff06.jpg"></div>
-  <div class="card" onclick="openLightbox('cor',4)"><img class="card-img" src="./assets/cor/Paisagen_cheff07.jpg"></div>
+<div class="projects" data-group="cor">
+  <img class="card" src="/assets/cor/Paisagen_cheff01.jpg">
+  <img class="card" src="/assets/cor/Paisagen_cheff02.jpg">
+  <img class="card" src="/assets/cor/Paisagen_cheff04.jpg">
+  <img class="card" src="/assets/cor/Paisagen_cheff06.jpg">
+  <img class="card" src="/assets/cor/Paisagen_cheff07.jpg">
 </div>
+<div class="project-arrows"><a href="#project-2">↓</a></div>
 
 <!-- PROJECT 2 -->
 <div class="project-meta" id="project-2">
   <h2>Under the Same Weather</h2>
   <p>2012</p>
 </div>
-<div class="projects">
-  <div class="card" onclick="openLightbox('pb',0)"><img class="card-img" src="./assets/pb/Paisagen_pb01.jpg"></div>
-  <div class="card" onclick="openLightbox('pb',1)"><img class="card-img" src="./assets/pb/Paisagen_pb02.jpg"></div>
-  <div class="card" onclick="openLightbox('pb',2)"><img class="card-img" src="./assets/pb/Paisagen_pb03.jpg"></div>
-  <div class="card" onclick="openLightbox('pb',3)"><img class="card-img" src="./assets/pb/Paisagen_pb05.jpg"></div>
-  <div class="card" onclick="openLightbox('pb',4)"><img class="card-img" src="./assets/pb/Paisagen_pb08.jpg"></div>
+<div class="projects" data-group="pb">
+  <img class="card" src="/assets/pb/Paisagen_pb01.jpg">
+  <img class="card" src="/assets/pb/Paisagen_pb02.jpg">
+  <img class="card" src="/assets/pb/Paisagen_pb03.jpg">
+  <img class="card" src="/assets/pb/Paisagen_pb05.jpg">
+  <img class="card" src="/assets/pb/Paisagen_pb08.jpg">
+</div>
+<div class="project-arrows">
+  <a href="#project-1">↑</a>
+  <a href="#project-4">↓</a>
 </div>
 
-<!-- PROJECT 4 (moved before project 3) -->
+<!-- PROJECT 4 -->
 <div class="project-meta" id="project-4">
   <h2>Last Night</h2>
   <p>2016</p>
 </div>
-<div class="projects">
-  <div class="card" onclick="openLightbox('cas',0)"><img class="card-img" src="./assets/cas/cas01.jpg"></div>
-  <div class="card" onclick="openLightbox('cas',1)"><img class="card-img" src="./assets/cas/cas02.jpg"></div>
-  <div class="card" onclick="openLightbox('cas',2)"><img class="card-img" src="./assets/cas/cas03.jpg"></div>
-  <div class="card" onclick="openLightbox('cas',3)"><img class="card-img" src="./assets/cas/cas04.jpg"></div>
-  <div class="card" onclick="openLightbox('cas',4)"><img class="card-img" src="./assets/cas/cas05.jpg"></div>
-  <div class="card" onclick="openLightbox('cas',5)"><img class="card-img" src="./assets/cas/cas06.jpg"></div>
-  <div class="card" onclick="openLightbox('cas',6)"><img class="card-img" src="./assets/cas/cas07.jpg"></div>
-  <div class="card" onclick="openLightbox('cas',7)"><img class="card-img" src="./assets/cas/cas08.jpg"></div>
+<div class="projects" data-group="cas">
+  <img class="card" src="/assets/cas/cas01.jpg">
+  <img class="card" src="/assets/cas/cas02.jpg">
+  <img class="card" src="/assets/cas/cas03.jpg">
+  <img class="card" src="/assets/cas/cas04.jpg">
+  <img class="card" src="/assets/cas/cas05.jpg">
+  <img class="card" src="/assets/cas/cas06.jpg">
+  <img class="card" src="/assets/cas/cas07.jpg">
+  <img class="card" src="/assets/cas/cas08.jpg">
+</div>
+<div class="project-arrows">
+  <a href="#project-2">↑</a>
+  <a href="#project-3">↓</a>
 </div>
 
 <!-- PROJECT 3 -->
@@ -224,50 +226,63 @@ footer {
   <h2>Inside the Sound</h2>
   <p>2024</p>
 </div>
-<div class="projects">
-  <div class="card" onclick="openLightbox('mia',0)"><img class="card-img" src="./assets/mia/mia01.jpg"></div>
-  <div class="card" onclick="openLightbox('mia',1)"><img class="card-img" src="./assets/mia/mia03.jpg"></div>
-  <div class="card" onclick="openLightbox('mia',2)"><img class="card-img" src="./assets/mia/mia05.jpg"></div>
-  <div class="card" onclick="openLightbox('mia',3)"><img class="card-img" src="./assets/mia/mia07.jpg"></div>
-  <div class="card" onclick="openLightbox('mia',4)"><img class="card-img" src="./assets/mia/mia09.jpg"></div>
+<div class="projects" data-group="mia">
+  <img class="card" src="/assets/mia/mia01.jpg">
+  <img class="card" src="/assets/mia/mia03.jpg">
+  <img class="card" src="/assets/mia/mia05.jpg">
+  <img class="card" src="/assets/mia/mia07.jpg">
+  <img class="card" src="/assets/mia/mia09.jpg">
 </div>
+<div class="project-arrows"><a href="#project-4">↑</a></div>
 
 </section>
 
 <footer>
-  <p>© 2025 — Pedro Cruz</p>
-  <p style="font-size:.7rem;opacity:.5;">All photographs are copyright protected</p>
+  © 2025 — Pedro Cruz
 </footer>
 
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <div class="lb-close">×</div>
+  <div class="lb-arrow lb-prev">←</div>
+  <img>
+  <div class="lb-arrow lb-next">→</div>
+</div>
+
 <script>
-let currentLang = 'pt';
+const lb=document.getElementById('lightbox');
+const lbImg=lb.querySelector('img');
+let images=[],index=0;
 
-const imageGroups = {
-  cor: {
-    images: ["01","02","04","06","07"].map(n=>`./assets/cor/Paisagen_cheff${n}.jpg`)
-  },
-  pb: {
-    images: ["01","02","03","05","08"].map(n=>`./assets/pb/Paisagen_pb${n}.jpg`)
-  },
-  cas: {
-    images: ["01","02","03","04","05","06","07","08"].map(n=>`./assets/cas/cas${n}.jpg`)
-  },
-  mia: {
-    images: ["01","03","05","07","09"].map(n=>`./assets/mia/mia${n}.jpg`)
-  }
-};
+document.querySelectorAll('.projects').forEach(group=>{
+  const imgs=[...group.querySelectorAll('img')];
+  imgs.forEach((img,i)=>{
+    img.onclick=()=>{
+      images=imgs.map(im=>im.src);
+      index=i;
+      open();
+    };
+  });
+});
 
-function setLang(l) {
-  currentLang = l;
-  document.querySelectorAll('.lang-pt').forEach(e=>e.style.display=l==='pt'?'block':'none');
-  document.querySelectorAll('.lang-en').forEach(e=>e.style.display=l==='en'?'block':'none');
-  document.getElementById('btn-pt').classList.toggle('active',l==='pt');
-  document.getElementById('btn-en').classList.toggle('active',l==='en');
+function open(){
+  lb.classList.add('active');
+  lbImg.src=images[index];
 }
+function close(){lb.classList.remove('active')}
+function next(){index=(index+1)%images.length;open()}
+function prev(){index=(index-1+images.length)%images.length;open()}
 
-function openLightbox(g,i){
-  window.open(imageGroups[g].images[i],'_blank');
-}
+lb.querySelector('.lb-close').onclick=close;
+lb.querySelector('.lb-next').onclick=next;
+lb.querySelector('.lb-prev').onclick=prev;
+
+document.addEventListener('keydown',e=>{
+  if(!lb.classList.contains('active'))return;
+  if(e.key==='Escape')close();
+  if(e.key==='ArrowRight')next();
+  if(e.key==='ArrowLeft')prev();
+});
 </script>
 
 </body>
