@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,61 +7,243 @@
 
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Helvetica,Arial,sans-serif;background:#0b0b0b;color:#eaeaea}
-header{padding:120px 24px 80px;text-align:center}
-header h1{font-size:1.8rem;font-weight:400}
-header p{font-size:.9rem;opacity:.6}
-.text{max-width:720px;margin:0 auto 120px;font-size:.95rem;opacity:.85}
+body{
+  margin:0;
+  font-family:Helvetica,Arial,sans-serif;
+  background:#0b0b0b;
+  color:#eaeaea;
+  line-height:1.6;
+}
+
+/* LANG SWITCH */
+.lang-switch{
+  position:fixed;
+  top:20px;
+  right:20px;
+  font-size:.8rem;
+  opacity:.8;
+  z-index:1000;
+}
+.lang-switch span{
+  margin-left:12px;
+  cursor:pointer;
+}
+.lang-switch .active{
+  text-decoration:underline;
+  opacity:1;
+}
+
+/* HEADER */
+header{
+  padding:120px 24px 80px;
+  text-align:center;
+}
+header h1{
+  font-size:1.8rem;
+  font-weight:400;
+}
+header p{
+  font-size:.9rem;
+  opacity:.6;
+}
+
+/* TEXT */
+.text{
+  max-width:720px;
+  margin:0 auto 120px;
+  font-size:.95rem;
+  opacity:.9;
+}
 .text p{margin-bottom:1.4em}
-.projects{max-width:1400px;margin:0 auto;padding:0 24px 160px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:40px}
-.card{aspect-ratio:4/3;background-size:cover;background-position:center;cursor:pointer}
-.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.96);display:none;align-items:center;justify-content:center;flex-direction:column}
+
+/* GRID */
+.projects{
+  max-width:1400px;
+  margin:0 auto;
+  padding:0 24px 160px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:40px;
+}
+.card{
+  aspect-ratio:4/3;
+  background-size:cover;
+  background-position:center;
+  cursor:pointer;
+}
+
+/* LIGHTBOX */
+.lightbox{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.96);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  z-index:999;
+}
 .lightbox.active{display:flex}
-.lightbox img{max-width:92vw;max-height:82vh;object-fit:contain}
-.caption{margin-top:20px;font-size:.85rem;opacity:.6}
-footer{padding:80px 20px;text-align:center;font-size:.8rem;opacity:.5}
+.lightbox img{
+  max-width:92vw;
+  max-height:82vh;
+  object-fit:contain;
+}
+.caption{
+  margin-top:20px;
+  font-size:.85rem;
+  opacity:.75;
+  text-align:center;
+  padding:0 20px;
+}
+
+/* CLICK ZONES */
+.lb-nav{
+  position:fixed;
+  top:0;
+  bottom:0;
+  width:50%;
+}
+.lb-left{left:0}
+.lb-right{right:0}
+
+/* FOOTER */
+footer{
+  padding:80px 20px;
+  text-align:center;
+  font-size:.8rem;
+  opacity:.5;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+  header h1{font-size:1.45rem}
+  .projects{gap:20px}
+  .caption{font-size:.8rem}
+}
 </style>
 </head>
 
 <body>
 
+<div class="lang-switch">
+  <span id="pt" class="active" onclick="setLang('pt')">PT</span>
+  <span id="en" onclick="setLang('en')">EN</span>
+</div>
+
 <header>
-<h1>From Blue Walls to White Silence</h1>
-<p>Chefchaouen · 2007</p>
+  <h1 class="lang-pt">Das Paredes Azuis ao Silêncio Branco</h1>
+  <h1 class="lang-en" style="display:none;">From Blue Walls to White Silence</h1>
+
+  <p class="lang-pt">Chefchaouen · 2007</p>
+  <p class="lang-en" style="display:none;">Chefchaouen · 2007</p>
 </header>
 
 <section class="text">
-<p>This series emerged from an extended walk through Chefchaouen, a city defined by an overwhelming chromatic presence. During the artist’s stay, it had not snowed in the region for seventeen years, reinforcing a sense of temporal suspension.</p>
-<p>As the sequence unfolds, colour dissolves into white, shifting perception from saturation toward silence.</p>
+
+  <div class="lang-pt">
+    <p>Esta série nasceu de uma deriva prolongada por Chefchaouen, uma cidade marcada por uma presença cromática intensa. Durante a estadia do autor, não nevava na região há dezassete anos, reforçando uma sensação de suspensão no tempo.</p>
+    <p>Ao longo da sequência, a cor dissolve-se progressivamente em branco, deslocando a percepção da saturação para o silêncio.</p>
+  </div>
+
+  <div class="lang-en" style="display:none;">
+    <p>This series emerged from an extended walk through Chefchaouen, a city defined by an overwhelming chromatic presence. During the artist’s stay, it had not snowed in the region for seventeen years, reinforcing a sense of temporal suspension.</p>
+    <p>As the sequence unfolds, colour dissolves into white, shifting perception from saturation toward silence.</p>
+  </div>
+
 </section>
 
 <section class="projects">
-<div class="card" style="background-image:url('../assets/cor/Paisagen_cheff01.jpg')" onclick="openLB(0)"></div>
-<div class="card" style="background-image:url('../assets/cor/Paisagen_cheff02.jpg')" onclick="openLB(1)"></div>
-<div class="card" style="background-image:url('../assets/cor/Paisagen_cheff04.jpg')" onclick="openLB(2)"></div>
-<div class="card" style="background-image:url('../assets/cor/Paisagen_cheff06.jpg')" onclick="openLB(3)"></div>
-<div class="card" style="background-image:url('../assets/cor/Paisagen_cheff07.jpg')" onclick="openLB(4)"></div>
+  <div class="card" style="background-image:url('../assets/cor/Paisagen_cheff01.jpg')" onclick="openLB(0)"></div>
+  <div class="card" style="background-image:url('../assets/cor/Paisagen_cheff02.jpg')" onclick="openLB(1)"></div>
+  <div class="card" style="background-image:url('../assets/cor/Paisagen_cheff04.jpg')" onclick="openLB(2)"></div>
+  <div class="card" style="background-image:url('../assets/cor/Paisagen_cheff06.jpg')" onclick="openLB(3)"></div>
+  <div class="card" style="background-image:url('../assets/cor/Paisagen_cheff07.jpg')" onclick="openLB(4)"></div>
 </section>
 
 <footer>© 2025 — Pedro Cruz</footer>
 
-<div class="lightbox" id="lb" onclick="closeLB()">
-<img id="lbimg"><div class="caption" id="lbcap"></div>
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lb">
+  <div class="lb-nav lb-left" onclick="prevImg()"></div>
+  <img id="lbimg" alt="">
+  <div class="lb-nav lb-right" onclick="nextImg()"></div>
+  <div class="caption" id="lbcap"></div>
 </div>
 
 <script>
 const images=[
-"../assets/cor/Paisagen_cheff01.jpg",
-"../assets/cor/Paisagen_cheff02.jpg",
-"../assets/cor/Paisagen_cheff04.jpg",
-"../assets/cor/Paisagen_cheff06.jpg",
-"../assets/cor/Paisagen_cheff07.jpg"
+  "../assets/cor/Paisagen_cheff01.jpg",
+  "../assets/cor/Paisagen_cheff02.jpg",
+  "../assets/cor/Paisagen_cheff04.jpg",
+  "../assets/cor/Paisagen_cheff06.jpg",
+  "../assets/cor/Paisagen_cheff07.jpg"
 ];
-const titles=["Living City","Exit","Watcher","Ascent","Silence"];
-function openLB(i){lb.classList.add('active');lbimg.src=images[i];lbcap.textContent=titles[i]}
-function closeLB(){lb.classList.remove('active')}
+
+const captionsPT=[
+  "Cidade habitada",
+  "Saída",
+  "Vigia",
+  "Ascensão",
+  "Silêncio"
+];
+
+const captionsEN=[
+  "Living City",
+  "Exit",
+  "Watcher",
+  "Ascent",
+  "Silence"
+];
+
+let current=0;
+let lang="pt";
+
+function setLang(l){
+  lang=l;
+  document.querySelectorAll('.lang-pt').forEach(e=>e.style.display=l==="pt"?"block":"none");
+  document.querySelectorAll('.lang-en').forEach(e=>e.style.display=l==="en"?"block":"none");
+  document.getElementById('pt').classList.toggle('active',l==="pt");
+  document.getElementById('en').classList.toggle('active',l==="en");
+  updateLB();
+}
+
+function openLB(i){
+  current=i;
+  updateLB();
+  lb.classList.add("active");
+}
+
+function closeLB(){lb.classList.remove("active")}
+
+function updateLB(){
+  lbimg.src=images[current];
+  lbcap.textContent = lang==="pt" ? captionsPT[current] : captionsEN[current];
+}
+
+function nextImg(){
+  current=(current+1)%images.length;
+  updateLB();
+}
+
+function prevImg(){
+  current=(current-1+images.length)%images.length;
+  updateLB();
+}
+
+/* only close when clicking background */
+lb.addEventListener("click",e=>{
+  if(e.target===lb) closeLB();
+});
+
+/* keyboard navigation */
+document.addEventListener("keydown",e=>{
+  if(!lb.classList.contains("active")) return;
+  if(e.key==="ArrowRight") nextImg();
+  if(e.key==="ArrowLeft") prevImg();
+  if(e.key==="Escape") closeLB();
+});
 </script>
 
 </body>
 </html>
-
