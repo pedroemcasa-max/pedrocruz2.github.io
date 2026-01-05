@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pedro Cruz — About</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Helvetica, Arial, sans-serif;
+  background: #0b0b0b;
+  color: #eaeaea;
+  line-height: 1.7;
+}
+
+/* HEADER */
+header {
+  padding: 80px 24px 40px;
+  text-align: center;
+  position: relative;
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+header h1 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* LANGUAGE SWITCH */
+.lang-switch {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  font-size: .75rem;
+  opacity: .6;
+}
+
+.lang-switch span {
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+.lang-switch span.active {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* ABOUT CONTENT */
+section.about {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 80px 24px 120px;
+  font-size: .95rem;
+}
+
+section.about p {
+  margin-bottom: 1.6em;
+  opacity: .85;
+}
+
+.lang-en { display: none; }
+
+/* FOOTER */
+footer {
+  padding: 60px 20px;
+  text-align: center;
+  font-size: .75rem;
+  opacity: .5;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="lang-switch">
+    <span id="btn-pt" class="active" onclick="setLang('pt')">PT</span>
+    <span id="btn-en" onclick="setLang('en')">EN</span>
+  </div>
+  <h1><a href="index.html">Pedro Cruz</a></h1>
+</header>
+
+<section class="about">
+  <!-- PORTUGUÊS -->
+  <div class="lang-pt">
+    <p>Nasci em 1971. A fotografia entrou cedo na minha vida, não como um gesto de registo, mas como um espaço de presença, escuta e relação com o lugar.</p>
+
+    <p>O meu trabalho explora a imagem como vestígio — algo que permanece depois do instante vivido — cruzando memória, tempo e silêncio. Mais do que descrever espaços, interessa-me o que neles se suspende: atmosferas, intervalos e estados de contenção.</p>
+
+    <p>A prática desenvolve-se de forma irregular e intuitiva, atravessando película e digital, mantendo uma relação livre com a técnica, entendida como ferramenta e não como fim.</p>
+
+    <p>Organizo o trabalho em séries que dialogam com paisagem, espaço doméstico e contextos de improvisação, propondo uma abordagem contemplativa e processual da imagem.</p>
+  </div>
+
+  <!-- ENGLISH -->
+  <div class="lang-en">
+    <p>I was born in 1971. Photography entered my life early, not as documentation, but as a space for presence, listening, and engagement with place.</p>
+
+    <p>My work explores the image as a trace — something that remains after the lived moment — intersecting memory, time, and silence. Rather than describing spaces, I am interested in what lingers within them: atmospheres, intervals, and states of restraint.</p>
+
+    <p>The practice develops irregularly and intuitively, moving between film and digital, maintaining a free relationship with technique, understood as a tool rather than an end.</p>
+
+    <p>I organise my work into series engaging with landscape, domestic space, and contexts of improvisation, proposing a contemplative and process-driven approach to the photographic image.</p>
+  </div>
+</section>
+
+<footer>
+  © 2025 — Pedro Cruz
+</footer>
+
+<script>
+let currentLang = 'pt';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-pt').forEach(e => e.style.display = lang === 'pt' ? 'block' : 'none');
+  document.querySelectorAll('.lang-en').forEach(e => e.style.display = lang === 'en' ? 'block' : 'none');
+  document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+}
+</script>
+
+</body>
+</html>
