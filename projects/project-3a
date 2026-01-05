@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Under the Same Weather — Pedro Cruz</title>
+<title>Inside the Sound — Pedro Cruz</title>
 
 <style>
 *{box-sizing:border-box}
@@ -185,8 +185,8 @@ footer{
 </div>
 
 <header>
-  <h1 class="lang-pt">Por Baixo do Mesmo Tempo</h1>
-  <h1 class="lang-en" style="display:none;">Under the Same Weather</h1>
+  <h1 class="lang-pt">Dentro do Som</h1>
+  <h1 class="lang-en" style="display:none;">Inside the Sound</h1>
 
   <p class="lang-pt">2012</p>
   <p class="lang-en" style="display:none;">2012</p>
@@ -195,20 +195,20 @@ footer{
 <section class="text">
 
   <div class="lang-pt">
-    <p>Esta série aborda a paisagem como uma condição atmosférica, mais do que geográfica. O tempo torna-se uniforme e a narrativa dissolve-se numa experiência de duração.</p>
+    Uma aproximação ao corpo como território acústico. As imagens surgem como ressonâncias físicas — ecos visuais de vibrações e estados de escuta.</p>
 
   <div class="lang-en" style="display:none;">
-   <p>This series approaches landscape as an atmospheric rather than a geographical condition. Time becomes uniform, and narrative dissolves into duration.</p>
+   <p>An exploration of the body as an acoustic territory. The images arise as physical resonances — visual echoes of vibration and listening states.</p>
   </div>
 
 </section>
 
 <section class="projects">
-<div class="card" style="background-image:url('../assets/pb/Paisagen_pb01.jpg')" onclick="openLB(0)"></div>
-<div class="card" style="background-image:url('../assets/pb/Paisagen_pb02.jpg')" onclick="openLB(1)"></div>
-<div class="card" style="background-image:url('../assets/pb/Paisagen_pb03.jpg')" onclick="openLB(2)"></div>
-<div class="card" style="background-image:url('../assets/pb/Paisagen_pb05.jpg')" onclick="openLB(3)"></div>
-<div class="card" style="background-image:url('../assets/pb/Paisagen_pb08.jpg')" onclick="openLB(4)"></div>
+  <div class="card" style="background-image:url('../assets/mia/mia01.jpg')" onclick="openLB(0)"></div>
+  <div class="card" style="background-image:url('../assets/mia/mia03.jpg')" onclick="openLB(1)"></div>
+  <div class="card" style="background-image:url('../assets/mia/mia05.jpg')" onclick="openLB(2)"></div>
+  <div class="card" style="background-image:url('../assets/mia/mia07.jpg')" onclick="openLB(3)"></div>
+  <div class="card" style="background-image:url('../assets/mia/mia09.jpg')" onclick="openLB(4)"></div>
 </section>
 
 
@@ -235,29 +235,29 @@ footer{
 
 <script>
 const images=[
- "../assets/pb/Paisagen_pb01.jpg",
- "../assets/pb/Paisagen_pb02.jpg",
- "../assets/pb/Paisagen_pb03.jpg",
- "../assets/pb/Paisagen_pb05.jpg",
- "../assets/pb/Paisagen_pb08.jpg"
+  "../assets/mia/mia01.jpg",
+  "../assets/mia/mia03.jpg",
+  "../assets/mia/mia05.jpg",
+  "../assets/mia/mia07.jpg",
+  "../assets/mia/mia09.jpg"
 ];
 
 /* --- TITULOS PT --- */
 const captionsPT=[
-  "Flui",
-  "Dentro",
-  "Passagem",
-  "Entre",
-  "Noite"
+  "Diálogo",
+  "Frequência",
+  "Ressonância",
+  "Eco",
+  "Retorno"
 ];
 
 /* --- TITLES EN --- */
 const captionsEN=[
-  "Flows",
-  "Inside",
-  "passage",
-  "Between",
-  "Night"
+  "Dialogue",
+  "Frequency",
+  "Resonance",
+  "Echo",
+  "Return"
 ];
 
 let current=0;
