@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Structures of Permanence — Pedro Cruz</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Helvetica,Arial,sans-serif;
+  background:#0b0b0b;
+  color:#eaeaea;
+  line-height:1.6;
+}
+
+/* HOME LINK */
+.home-link{
+  position:fixed;
+  top:20px;
+  left:20px;
+  font-size:.8rem;
+  opacity:.8;
+  z-index:1000;
+}
+.home-link a{
+  text-decoration:none;
+  color:#eaeaea;
+}
+.home-link a:hover{opacity:1}
+
+/* LANG SWITCH */
+.lang-switch{
+  position:fixed;
+  top:20px;
+  right:20px;
+  font-size:.8rem;
+  opacity:.8;
+  z-index:1000;
+}
+.lang-switch span{
+  margin-left:12px;
+  cursor:pointer;
+}
+.lang-switch .active{
+  text-decoration:underline;
+  opacity:1;
+}
+
+/* HEADER */
+header{
+  padding:120px 24px 80px;
+  text-align:center;
+}
+header h1{
+  font-size:1.8rem;
+  font-weight:400;
+}
+header p{
+  font-size:.9rem;
+  opacity:.6;
+}
+
+/* TEXT */
+.text{
+  max-width:720px;
+  margin:0 auto 120px;
+  font-size:.95rem;
+  opacity:.9;
+  text-align:center;
+}
+.text p{margin-bottom:1.4em}
+
+/* GRID */
+.projects{
+  max-width:1400px;
+  margin:0 auto;
+  padding:0 24px 160px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:40px;
+}
+.card{
+  aspect-ratio:4/3;
+  background-size:cover;
+  background-position:center;
+  cursor:pointer;
+}
+
+/* LIGHTBOX */
+.lightbox{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.96);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  z-index:999;
+}
+.lightbox.active{display:flex}
+.lightbox img{
+  max-width:92vw;
+  max-height:82vh;
+  object-fit:contain;
+}
+
+.caption{
+  margin-top:20px;
+  font-size:.9rem;
+  opacity:.8;
+  text-align:center;
+  padding:0 20px;
+}
+
+/* CLICK ZONES */
+.lb-nav{
+  position:fixed;
+  top:0;
+  bottom:0;
+  width:50%;
+  pointer-events:none;
+}
+.lb-left{left:0}
+.lb-right{right:0}
+
+/* BUTTONS */
+.lb-btn{
+  position:fixed;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:38px;
+  padding:6px 14px;
+  background:rgba(0,0,0,.55);
+  border-radius:12px;
+  cursor:pointer;
+  opacity:.9;
+  pointer-events:auto;
+}
+.lb-btn:hover{background:black;opacity:1}
+.lb-prev{left:22px}
+.lb-next{right:22px}
+
+/* PROJECT NAVIGATION */
+.project-nav{
+  text-align:center;
+  padding:60px 20px 100px;
+  opacity:.8;
+  font-size:.9rem;
+}
+.project-nav a{
+  color:#eaeaea;
+  text-decoration:none;
+  margin:0 16px;
+}
+.project-nav a:hover{text-decoration:underline}
+
+/* FOOTER */
+footer{
+  padding:20px;
+  text-align:center;
+  font-size:.8rem;
+  opacity:.45;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+  header h1{font-size:1.45rem}
+  .projects{gap:20px}
+  .caption{font-size:.8rem}
+}
+</style>
+</head>
+
+<body>
+
+<div class="home-link">
+  <a href="../index.html">← Home</a>
+</div>
+
+<div class="lang-switch">
+  <span id="pt" class="active" onclick="setLang('pt')">PT</span>
+  <span id="en" onclick="setLang('en')">EN</span>
+</div>
+
+<header>
+  <h1 class="lang-pt">Última Noite</h1>
+  <h1 class="lang-en" style="display:none;">Last Night</h1>
+
+  <p class="lang-pt">2008-2018</p>
+  <p class="lang-en" style="display:none;">2008-2018</p>
+</header>
+
+<section class="text">
+
+  <div class="lang-pt">
+    <p><strong>Last Night</strong> explora o território nocturno onde arquitectura, luz e instabilidade se encontram. As imagens sugerem momentos de fratura e suspensão, como se a cidade estivesse presa num estado frágil entre presença e colapso.</p>
+    <p>A sequência desenrola-se como uma descida lenta, do momento de antecipação até às consequências, sem se resolver num evento claro.</p>
+  </div>
+
+  <div class="lang-en" style="display:none;">
+    <p><strong>Structures of Permanence</strong> is a long–term photographic project reflecting on persistence, repetition and structural presence within the built environment. Rather than describing specific places, these images construct a visual archive of forms that remain — even when their function becomes unstable, ambiguous or obsolete.</p>
+  <p>Some photographs are made in single long exposures with focal-length variation, emphasising a quiet sense of displacement within the structure itself.</p>
+  </div>
+
+</section>
+
+<section class="projects">
+  <div class="card" style="background-image:url('../assets/estrutura/_1est18.jpg"  onclick="openLB(0)"></div>
+  <div class="card" style="background-image:url('../assets/estrutura/_2est28.jpg"  onclick="openLB(1)"></div>
+  <div class="card" style="background-image:url('../assets/estrutura/_3est37.jpg"  onclick="openLB(2)"></div>
+  <div class="card" style="background-image:url('../assets/estrutura/_4est32.jpg"  onclick="openLB(3)"></div>
+  <div class="card" style="background-image:url('../assets/estrutura/_5est36.jpg"  onclick="openLB(4)"></div>
+  <div class="card" style="background-image:url('../assets/estrutura/_6est35.jpg"  onclick="openLB(5)"></div>
+  <div class="card" style="background-image:url('../assets/estrutura/_7est21.jpg"  onclick="openLB(6)"></div>
+  <div class="card" style="background-image:url('../assets/estrutura/_8est33.jpg"  onclick="openLB(7)"></div>
+  <div class="card" style="background-image:url('../assets/estrutura/_9est19.jpg"  onclick="openLB(8)"></div>
+  <div class="card" style="background-image:url('../assets/estrutura/_10est14.jpg" onclick="openLB(9)"></div>
+  <div class="card" style="background-image:url('../assets/estrutura/_11est29.jpg" onclick="openLB(10)"></div>
+  <div class="card" style="background-image:url('../assets/estrutura/_12est30.jpg" onclick="openLB(11)"></div>
+  <div class="card" style="background-image:url('../assets/estrutura/_13est10.jpg" onclick="openLB(12)"></div>
+</div>
+
+<!-- PROJECT NAV -->
+<div class="project-nav">
+  <a href="project-4.html">← Projecto anterior</a>
+  <a href="../index.html">Home</a>
+  <a href="project-1.html">Projecto seguinte →</a>
+</div>
+
+<footer>© 2025 — Pedro Cruz</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lb">
+  <div class="lb-nav lb-left"></div>
+  <div class="lb-nav lb-right"></div>
+
+  <div class="lb-btn lb-prev" onclick="prevImg()">❮</div>
+  <div class="lb-btn lb-next" onclick="nextImg()">❯</div>
+
+  <img id="lbimg" alt="">
+  <div class="caption" id="lbcap"></div>
+</div>
+
+<script>
+const images=[
+"../assets/estrutura/_1est18.jpg",
+"../assets/estrutura/_2est28.jpg",
+"../assets/estrutura/_3est37.jpg",
+"../assets/estrutura/_4est32.jpg",
+"../assets/estrutura/_5est36.jpg",
+"../assets/estrutura/_6est35.jpg",
+"../assets/estrutura/_7est21.jpg",
+"../assets/estrutura/_8est33.jpg",
+"../assets/estrutura/_9est19.jpg",
+"../assets/estrutura/_10est14.jpg",
+"../assets/estrutura/_11est29.jpg",
+"../assets/estrutura/_12est30.jpg",
+"../assets/estrutura/_13est10.jpg"
+  
+  
+  ];
+
+/* --- TITULOS PT --- */
+const captionsPT=[
+  "Silent Facade",
+  "Borrowed Light",
+  "Yellow Geometry in Concrete",
+  "Structure in Yellow",
+  "Repeating Concrete Rhythm",
+  "Stair Fragment",
+  "Urban Blue Layers",
+  "Watching Itself",
+  "Roof Echoes",
+  "Cathedral in Light",
+  "Antenna Rhythm",
+  "Sky Divide",
+  "Windows in the Night"
+];
+
+/* --- TITLES EN --- */
+const captionsEN=[
+  "Silent Facade",
+  "Borrowed Light",
+  "Yellow Geometry in Concrete",
+  "Structure in Yellow",
+  "Repeating Concrete Rhythm",
+  "Stair Fragment",
+  "Urban Blue Layers",
+  "Watching Itself",
+  "Roof Echoes",
+  "Cathedral in Light",
+  "Antenna Rhythm",
+  "Sky Divide",
+  "Windows in the Night"
+
+  
+];
+
+let current=0;
+let lang="pt";
+
+function setLang(l){
+  lang=l;
+  document.querySelectorAll('.lang-pt').forEach(e=>e.style.display=l==="pt"?"block":"none");
+  document.querySelectorAll('.lang-en').forEach(e=>e.style.display=l==="en"?"block":"none");
+  pt.classList.toggle('active',l==="pt");
+  en.classList.toggle('active',l==="en");
+  updateLB();
+}
+
+function openLB(i){
+  current=i;
+  updateLB();
+  lb.classList.add("active");
+}
+
+function closeLB(){lb.classList.remove("active")}
+
+function updateLB(){
+  lbimg.src=images[current];
+  lbcap.textContent = lang==="pt" ? captionsPT[current] : captionsEN[current];
+}
+
+function nextImg(){
+  current=(current+1)%images.length;
+  updateLB();
+}
+
+function prevImg(){
+  current=(current-1+images.length)%images.length;
+  updateLB();
+}
+
+/* CLICK OUTSIDE TO CLOSE */
+lb.addEventListener("click",e=>{
+  if(e.target===lb) closeLB();
+});
+
+/* KEYBOARD NAV */
+document.addEventListener("keydown",e=>{
+
+  if(lb.classList.contains("active")){
+    if(e.key==="ArrowRight") nextImg();
+    if(e.key==="ArrowLeft") prevImg();
+    if(e.key==="Escape") closeLB();
+    return;
+  }
+
+  /* BETWEEN PROJECTS */
+  if(e.key==="ArrowLeft") window.location.href="project-4.html";
+  if(e.key==="ArrowRight") window.location.href="project-1.html";
+});
+</script>
+
+</body>
+</html>
