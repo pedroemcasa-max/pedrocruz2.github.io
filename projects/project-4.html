@@ -195,31 +195,26 @@ footer{
 <section class="text">
 
   <div class="lang-pt">
-    <p><strong>Last Night</strong> explora o território nocturno onde arquitectura, luz e instabilidade se encontram. As imagens sugerem momentos de fratura e suspensão, como se a cidade estivesse presa num estado frágil entre presença e colapso.</p>
+    <p><strong>Ultima Noite</strong> explora o território nocturno onde arquitectura, luz e instabilidade se encontram. As imagens sugerem momentos de fratura e suspensão, como se a cidade estivesse presa num estado frágil entre presença e colapso.</p>
     <p>A sequência desenrola-se como uma descida lenta, do momento de antecipação até às consequências, sem se resolver num evento claro.</p>
   </div>
 
   <div class="lang-en" style="display:none;">
-    <p><strong>Structures of Permanence</strong> is a long–term photographic project reflecting on persistence, repetition and structural presence within the built environment. Rather than describing specific places, these images construct a visual archive of forms that remain — even when their function becomes unstable, ambiguous or obsolete.</p>
-  <p>Some photographs are made in single long exposures with focal-length variation, emphasising a quiet sense of displacement within the structure itself.</p>
+    <p><strong>Last Night</strong> explores the nocturnal territory where architecture, light and instability meet. The images suggest moments of fracture and suspension, as if the city were trapped in a fragile state between presence and collapse.</p>
+    <p>The sequence unfolds like a slow descent, from anticipation to consequence, without resolving into a single clear event.</p>
   </div>
 
 </section>
 
 <section class="projects">
-  <div class="card" style="background-image:url('../assets/estrutura/_1est18.jpg"  onclick="openLB(0)"></div>
-  <div class="card" style="background-image:url('../assets/estrutura/_2est28.jpg"  onclick="openLB(1)"></div>
-  <div class="card" style="background-image:url('../assets/estrutura/_3est37.jpg"  onclick="openLB(2)"></div>
-  <div class="card" style="background-image:url('../assets/estrutura/_4est32.jpg"  onclick="openLB(3)"></div>
-  <div class="card" style="background-image:url('../assets/estrutura/_5est36.jpg"  onclick="openLB(4)"></div>
-  <div class="card" style="background-image:url('../assets/estrutura/_6est35.jpg"  onclick="openLB(5)"></div>
-  <div class="card" style="background-image:url('../assets/estrutura/_7est21.jpg"  onclick="openLB(6)"></div>
-  <div class="card" style="background-image:url('../assets/estrutura/_8est33.jpg"  onclick="openLB(7)"></div>
-  <div class="card" style="background-image:url('../assets/estrutura/_9est19.jpg"  onclick="openLB(8)"></div>
-  <div class="card" style="background-image:url('../assets/estrutura/_10est14.jpg" onclick="openLB(9)"></div>
-  <div class="card" style="background-image:url('../assets/estrutura/_11est29.jpg" onclick="openLB(10)"></div>
-  <div class="card" style="background-image:url('../assets/estrutura/_12est30.jpg" onclick="openLB(11)"></div>
-  <div class="card" style="background-image:url('../assets/estrutura/_13est10.jpg" onclick="openLB(12)"></div>
+  <div class="card" style="background-image:url('../assets/cas/cas01.jpg')" onclick="openLB(0)"></div>
+  <div class="card" style="background-image:url('../assets/cas/cas02.jpg')" onclick="openLB(1)"></div>
+  <div class="card" style="background-image:url('../assets/cas/cas03.jpg')" onclick="openLB(2)"></div>
+  <div class="card" style="background-image:url('../assets/cas/cas04.jpg')" onclick="openLB(3)"></div>
+  <div class="card" style="background-image:url('../assets/cas/cas05.jpg')" onclick="openLB(4)"></div>
+  <div class="card" style="background-image:url('../assets/cas/cas06.jpg')" onclick="openLB(5)"></div>
+  <div class="card" style="background-image:url('../assets/cas/cas07.jpg')" onclick="openLB(6)"></div>
+  <div class="card" style="background-image:url('../assets/cas/cas08.jpg')" onclick="openLB(7)"></div>
 </div>
 
 <!-- PROJECT NAV -->
@@ -245,57 +240,36 @@ footer{
 
 <script>
 const images=[
-"../assets/estrutura/_1est18.jpg",
-"../assets/estrutura/_2est28.jpg",
-"../assets/estrutura/_3est37.jpg",
-"../assets/estrutura/_4est32.jpg",
-"../assets/estrutura/_5est36.jpg",
-"../assets/estrutura/_6est35.jpg",
-"../assets/estrutura/_7est21.jpg",
-"../assets/estrutura/_8est33.jpg",
-"../assets/estrutura/_9est19.jpg",
-"../assets/estrutura/_10est14.jpg",
-"../assets/estrutura/_11est29.jpg",
-"../assets/estrutura/_12est30.jpg",
-"../assets/estrutura/_13est10.jpg"
+ "../assets/cas/cas01.jpg","../assets/cas/cas02.jpg",
+ "../assets/cas/cas03.jpg","../assets/cas/cas04.jpg",
+ "../assets/cas/cas05.jpg","../assets/cas/cas06.jpg",
+ "../assets/cas/cas07.jpg","../assets/cas/cas08.jpg"
   
   
   ];
 
 /* --- TITULOS PT --- */
 const captionsPT=[
-  "Silent Facade",
-  "Borrowed Light",
-  "Yellow Geometry in Concrete",
-  "Structure in Yellow",
-  "Repeating Concrete Rhythm",
-  "Stair Fragment",
-  "Urban Blue Layers",
-  "Watching Itself",
-  "Roof Echoes",
-  "Cathedral in Light",
-  "Antenna Rhythm",
-  "Sky Divide",
-  "Windows in the Night"
+  "Antes",
+  "Fractura",
+  "Refúgio",
+  "Suspensa",
+  "Eco",
+  "Padrão",
+  "Colapso",
+  "Depois"
 ];
 
 /* --- TITLES EN --- */
 const captionsEN=[
-  "Silent Facade",
-  "Borrowed Light",
-  "Yellow Geometry in Concrete",
-  "Structure in Yellow",
-  "Repeating Concrete Rhythm",
-  "Stair Fragment",
-  "Urban Blue Layers",
-  "Watching Itself",
-  "Roof Echoes",
-  "Cathedral in Light",
-  "Antenna Rhythm",
-  "Sky Divide",
-  "Windows in the Night"
-
-  
+  "Before",
+  "Fracture",
+  "Refuge",
+  "Suspended",
+  "Echo",
+  "Pattern",
+  "Collapse",
+  "After"
 ];
 
 let current=0;
@@ -349,8 +323,8 @@ document.addEventListener("keydown",e=>{
   }
 
   /* BETWEEN PROJECTS */
-  if(e.key==="ArrowLeft") window.location.href="project-4.html";
-  if(e.key==="ArrowRight") window.location.href="project-1.html";
+  if(e.key==="ArrowLeft") window.location.href="project-3.html";
+  if(e.key==="ArrowRight") window.location.href="strutures-of-permanance.html";
 });
 </script>
 
